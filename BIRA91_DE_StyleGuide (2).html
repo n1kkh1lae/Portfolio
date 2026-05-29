@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Bira 91 DE — Brand Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --y:#F5C800; --g:#1A3A2A; --w:#FAF7F0; --k:#0F0F0F;
+  --red:#C8102E; --gold:#B8960C; --ink:#2C2C2C; --muted:#6B6B6B; --border:#E0DCCC;
+}
+body { font-family:'DM Sans',sans-serif; background:var(--w); color:var(--ink); font-size:10pt; }
+.page { width:210mm; min-height:297mm; margin:0 auto 2mm; background:var(--w); position:relative; overflow:hidden; page-break-after:always; }
+@media print { body{margin:0} .page{margin:0;page-break-after:always} }
+
+/* COVER */
+.cover { background:var(--g); display:flex; flex-direction:column; justify-content:space-between; padding:16mm; }
+.cover-top { display:flex; justify-content:space-between; }
+.wm { font-family:'Playfair Display',serif; font-size:13pt; font-weight:700; color:var(--y); letter-spacing:.05em; }
+.cover-tag { font-family:'DM Mono',monospace; font-size:7pt; color:rgba(245,200,0,.5); letter-spacing:.12em; text-align:right; line-height:1.6; }
+.monkey-area { text-align:center; margin:8mm 0 4mm; }
+.cover-title { font-family:'Playfair Display',serif; font-size:30pt; font-weight:900; color:var(--w); line-height:1; text-align:center; }
+.cover-sub { font-size:9pt; color:rgba(250,247,240,.55); text-align:center; margin-top:3mm; }
+.flag-row { display:flex; gap:2mm; justify-content:center; margin-top:6mm; align-items:center; }
+.stripe { height:3mm; width:14mm; border-radius:1px; }
+.s-k { background:#0F0F0F; } .s-r { background:var(--red); } .s-y { background:var(--y); }
+.flag-lbl { font-family:'DM Mono',monospace; font-size:7pt; color:rgba(245,200,0,.5); letter-spacing:.1em; margin-left:3mm; }
+.cover-ft { border-top:.5px solid rgba(245,200,0,.2); padding-top:5mm; display:flex; justify-content:space-between; margin-top:8mm; }
+.cft-l { font-size:7.5pt; color:rgba(250,247,240,.4); line-height:1.7; }
+.cft-r { font-family:'DM Mono',monospace; font-size:7pt; color:rgba(245,200,0,.35); text-align:right; }
+
+/* INTERIOR SHELL */
+.int { padding:14mm 16mm 12mm; display:flex; flex-direction:column; min-height:297mm; }
+.ph { display:flex; justify-content:space-between; align-items:center; padding-bottom:5mm; border-bottom:1px solid var(--border); margin-bottom:9mm; }
+.ph-l { display:flex; align-items:center; gap:5mm; }
+.pm { font-family:'Playfair Display',serif; font-size:9pt; font-weight:700; color:var(--y); background:var(--g); padding:1.5mm 4mm; border-radius:2px; }
+.pt { font-size:8pt; font-weight:500; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+.pn { font-family:'DM Mono',monospace; font-size:7.5pt; color:var(--muted); }
+.stitle { font-family:'Playfair Display',serif; font-size:26pt; font-weight:900; color:var(--k); margin-bottom:6mm; line-height:1; }
+.lbl-sm { font-size:7.5pt; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.pf { margin-top:auto; padding-top:5mm; border-top:.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.pf-ref { font-family:'DM Mono',monospace; font-size:6.5pt; color:var(--muted); line-height:1.6; }
+.pf-logo { font-family:'Playfair Display',serif; font-size:9pt; font-weight:700; color:var(--g); }
+
+/* PAGE 2 BRAND STORY */
+.banner { background:var(--g); color:var(--w); padding:5mm 6mm; border-radius:3px; font-size:8pt; line-height:1.7; margin-bottom:7mm; }
+.banner strong { color:var(--y); }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:10mm; }
+.pull { font-family:'Playfair Display',serif; font-size:17pt; font-weight:700; line-height:1.3; border-left:3px solid var(--y); padding-left:5mm; margin-bottom:6mm; }
+.body-text { font-size:8.5pt; line-height:1.75; margin-bottom:4mm; }
+.stat { background:var(--g); padding:5mm 6mm; border-radius:3px; margin-bottom:4mm; }
+.stat-n { font-family:'Playfair Display',serif; font-size:24pt; font-weight:900; color:var(--y); line-height:1; }
+.stat-d { font-size:7.5pt; color:rgba(250,247,240,.65); margin-top:1.5mm; line-height:1.5; }
+.de-box { background:#F0EDE3; border:1px solid var(--border); border-left:3px solid var(--red); padding:5mm 6mm; border-radius:0 3px 3px 0; }
+.de-box-t { font-size:7.5pt; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--red); margin-bottom:2.5mm; }
+.de-box-b { font-size:8pt; line-height:1.65; }
+
+/* PAGE 3 LOGO */
+.logo-grid { display:grid; grid-template-columns:1fr 1fr; gap:7mm; }
+.logo-cell { border:1px solid var(--border); border-radius:3px; padding:6mm; display:flex; flex-direction:column; }
+.logo-lbl { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4mm; }
+.logo-disp { flex:1; display:flex; align-items:center; justify-content:center; min-height:26mm; border-radius:3px; padding:5mm; }
+.logo-txt { font-family:'Playfair Display',serif; font-size:20pt; font-weight:900; }
+.invB { display:inline-block; transform:scaleX(-1); }
+.clearspace-box { border:1px solid var(--border); border-radius:3px; padding:5.5mm; margin-top:6mm; }
+.cs-title { font-size:7.5pt; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:4mm; }
+.cs-inner { display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.cs-vis { background:#F5F2E8; border:1px dashed #C8C4B4; padding:8mm 6mm; text-align:center; position:relative; }
+.cs-logo { font-family:'Playfair Display',serif; font-size:16pt; font-weight:900; color:var(--g); }
+.cs-ann { position:absolute; font-family:'DM Mono',monospace; font-size:6pt; color:var(--red); }
+.spec-row { display:flex; justify-content:space-between; align-items:baseline; padding:2mm 0; border-bottom:.5px solid #EEEBE0; }
+.spec-row:last-child { border-bottom:none; }
+.sk { font-size:7.5pt; color:var(--muted); }
+.sv { font-family:'DM Mono',monospace; font-size:7.5pt; font-weight:500; }
+.cs-rule { font-size:8pt; line-height:1.6; margin-top:3mm; }
+
+/* PAGE 4 COLOR */
+.color-block { margin-bottom:7mm; }
+.swatches { display:flex; gap:4mm; }
+.swatch { flex:1; border-radius:3px; overflow:hidden; border:1px solid var(--border); }
+.sw-color { height:20mm; }
+.sw-info { padding:3mm; background:white; }
+.sw-name { font-size:8pt; font-weight:600; margin-bottom:1.5mm; }
+.sw-spec { font-family:'DM Mono',monospace; font-size:6.5pt; color:var(--muted); line-height:1.7; }
+.usage-note { background:#F0EDE3; border:1px solid var(--border); padding:4.5mm 5.5mm; border-radius:3px; font-size:8pt; line-height:1.65; margin-top:5mm; }
+
+/* PAGE 5 TYPE */
+.type-sec { margin-bottom:6mm; }
+.type-spec { border:1px solid var(--border); border-radius:3px; padding:5mm 6mm; margin-bottom:3mm; }
+.t-display { font-family:'Playfair Display',serif; font-size:30pt; font-weight:900; line-height:1; margin-bottom:3mm; }
+.t-body { font-size:9pt; line-height:1.7; }
+.t-mono { font-family:'DM Mono',monospace; font-size:8pt; color:var(--muted); }
+.t-meta { display:flex; gap:7mm; flex-wrap:wrap; margin-top:3mm; }
+.tm-lbl { font-size:6.5pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+.tm-val { font-size:8pt; font-weight:500; margin-top:.5mm; }
+.legal-note { background:var(--g); color:var(--w); padding:4.5mm 5.5mm; border-radius:3px; font-size:8pt; line-height:1.65; margin-top:5mm; }
+.legal-note strong { color:var(--y); }
+
+/* PAGE 6 PRINT SPECS */
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.spec-card { border:1px solid var(--border); border-radius:3px; padding:5mm 6mm; }
+.sc-title { font-size:7.5pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4mm; padding-bottom:2.5mm; border-bottom:1px solid var(--border); }
+.pantone-chip { display:flex; align-items:center; gap:3mm; padding:2.5mm 0; border-bottom:.5px solid #EEEBE0; }
+.pantone-chip:last-child { border-bottom:none; }
+.chip-dot { width:6mm; height:6mm; border-radius:50%; border:.5px solid rgba(0,0,0,.1); flex-shrink:0; }
+.chip-name { font-size:7.5pt; font-weight:500; }
+.chip-code { font-family:'DM Mono',monospace; font-size:6.5pt; color:var(--muted); }
+
+/* PAGE 7 DO DONT */
+.dd-grid { display:grid; grid-template-columns:1fr 1fr; gap:8mm; }
+.dd-hdr { display:flex; align-items:center; gap:3mm; margin-bottom:5mm; padding-bottom:3mm; border-bottom:2px solid; }
+.do-hdr { border-color:#2D7A4F; }
+.dn-hdr { border-color:var(--red); }
+.dd-icon { font-size:13pt; font-weight:900; line-height:1; }
+.do-icon { color:#2D7A4F; }
+.dn-icon { color:var(--red); }
+.dd-heading { font-family:'Playfair Display',serif; font-size:13pt; font-weight:700; }
+.dd-item { display:flex; gap:3mm; margin-bottom:4mm; padding:3.5mm 4mm; border-radius:3px; }
+.do-item { background:rgba(45,122,79,.06); border:1px solid rgba(45,122,79,.2); }
+.dn-item { background:rgba(200,16,46,.05); border:1px solid rgba(200,16,46,.15); }
+.dd-bul { font-size:9pt; font-weight:700; flex-shrink:0; margin-top:.5mm; }
+.do-bul { color:#2D7A4F; }
+.dn-bul { color:var(--red); }
+.dd-text { font-size:8pt; line-height:1.6; }
+
+/* PAGE 8 PACKAGING */
+.pkg-grid { display:grid; grid-template-columns:1fr 1fr; gap:8mm; margin-bottom:6mm; }
+.pkg-cell { border:1px solid var(--border); border-radius:3px; overflow:hidden; }
+.pkg-hdr { background:var(--g); padding:3mm 4.5mm; font-size:7.5pt; font-weight:600; color:var(--y); letter-spacing:.1em; text-transform:uppercase; }
+.pkg-body { padding:5mm; }
+.label-mock { background:linear-gradient(135deg,#1A3A2A,#0F2018); border-radius:4px; padding:5mm 4mm; text-align:center; min-height:38mm; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2mm; margin-bottom:4mm; }
+.lm-brand { font-family:'Playfair Display',serif; font-size:15pt; font-weight:900; color:var(--y); }
+.lm-tag { font-family:'DM Mono',monospace; font-size:6pt; color:rgba(245,200,0,.65); letter-spacing:.15em; }
+.lm-line { width:28mm; height:.5px; background:rgba(245,200,0,.3); }
+.lm-style { font-size:7pt; color:rgba(250,247,240,.55); }
+.lm-abv { font-family:'DM Mono',monospace; font-size:8pt; color:var(--y); }
+.spec-list { font-size:7.5pt; line-height:1.75; }
+.spec-list li { padding:1mm 0; border-bottom:.5px solid #EEEBE0; display:flex; justify-content:space-between; }
+.spec-list li:last-child { border:none; }
+.spec-pill { font-family:'DM Mono',monospace; font-size:6.5pt; background:var(--g); color:var(--y); padding:.5mm 2.5mm; border-radius:2px; }
+.ai-note { background:#F0EDE3; border:1px solid var(--border); border-left:3px solid var(--g); padding:5mm 6mm; border-radius:0 3px 3px 0; margin-bottom:5mm; font-size:8pt; line-height:1.7; }
+.signoff { background:var(--g); padding:5.5mm 7mm; border-radius:3px; display:flex; justify-content:space-between; align-items:center; }
+.so-brand { font-family:'Playfair Display',serif; font-size:15pt; font-weight:900; color:var(--y); }
+.so-sub { font-size:7pt; color:rgba(250,247,240,.5); margin-top:1.5mm; font-family:'DM Mono',monospace; }
+.so-r { font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(245,200,0,.45); text-align:right; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 01 COVER -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="wm">BIRA 91</div>
+    <div class="cover-tag">BRAND STYLE GUIDE<br>DEUTSCHLAND EDITION<br>REVISION 1.0 — 2025</div>
+  </div>
+  <div class="monkey-area">
+    <svg width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="55" cy="75" rx="22" ry="26" fill="#2D5A3D"/>
+      <ellipse cx="55" cy="44" rx="20" ry="19" fill="#2D5A3D"/>
+      <ellipse cx="55" cy="47" rx="13" ry="11" fill="#C4956A"/>
+      <circle cx="49" cy="43" r="3" fill="#0F0F0F"/><circle cx="61" cy="43" r="3" fill="#0F0F0F"/>
+      <circle cx="50" cy="42" r="1" fill="white"/><circle cx="62" cy="42" r="1" fill="white"/>
+      <ellipse cx="35" cy="44" rx="7" ry="8" fill="#2D5A3D"/><ellipse cx="35" cy="44" rx="4" ry="5" fill="#C4956A"/>
+      <ellipse cx="75" cy="44" rx="7" ry="8" fill="#2D5A3D"/><ellipse cx="75" cy="44" rx="4" ry="5" fill="#C4956A"/>
+      <path d="M 48 52 Q 55 57 62 52" stroke="#8B5A2B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="55" cy="49" rx="3" ry="2" fill="#8B5A2B"/>
+      <path d="M 33 65 Q 22 72 25 82" stroke="#2D5A3D" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M 77 65 Q 88 72 85 82" stroke="#2D5A3D" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <rect x="84" y="76" width="12" height="16" rx="2" fill="#F5C800" opacity=".9"/>
+      <rect x="96" y="79" width="4" height="8" rx="2" fill="#F5C800" opacity=".7"/>
+      <rect x="84" y="76" width="12" height="4" rx="1" fill="white" opacity=".6"/>
+      <path d="M 38 30 L 42 20 L 55 26 L 68 20 L 72 30" stroke="#F5C800" stroke-width="2" fill="none" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div>
+    <div style="font-family:'Playfair Display',serif; font-size:11pt; font-weight:400; color:rgba(250,247,240,.45); letter-spacing:.3em; text-transform:uppercase; text-align:center; margin-bottom:2mm;">Das Bier für</div>
+    <div class="cover-title">Deutschland</div>
+    <div class="cover-sub">Bira 91 · German Market Extension · Brand Identity &amp; Packaging Standards</div>
+    <div class="flag-row">
+      <div class="stripe s-k"></div><div class="stripe s-r"></div><div class="stripe s-y"></div>
+      <div class="flag-lbl">DE MARKET · 2025</div>
+    </div>
+  </div>
+  <div class="cover-ft">
+    <div class="cft-l">Produced using AI-assisted design pipeline<br>Midjourney v6 · Canva Pro · Claude Sonnet<br>MGSC Design Operations Showcase · 2025</div>
+    <div class="cft-r">B9 Beverages · Bira 91 DE<br>Brand Style Guide v1.0<br>01 / 08</div>
+  </div>
+</div>
+
+<!-- PAGE 02 BRAND STORY -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">01</div><div class="pt">Brand Story &amp; Market Rationale</div></div>
+    <div class="pn">02 / 08</div>
+  </div>
+  <div class="banner"><strong>Context:</strong> Bira 91 is expanding into the German market with a tailored extension — <strong>Bira 91 DE</strong>. This guide governs all brand expressions for Deutschland: packaging, POS, and trade communications. Core Bira 91 identity is preserved; this document defines market-specific adaptations for regulatory compliance, cultural fit, and retail presence.</div>
+  <div class="two-col">
+    <div>
+      <div class="lbl-sm" style="margin-bottom:4mm;">Origin</div>
+      <div class="pull">Born in Delhi.<br>Brewed for the world.</div>
+      <div class="body-text">Bira 91 launched in 2015 with a single conviction: beer could be flavorful, playful, and genuinely Indian without being narrowly ethnic. "Bira" means brother in North Indian vernacular and echoes the Italian "birra." The 91 encodes India's international dialling code — national pride without nationalist weight.</div>
+      <div class="body-text">The inverted B — Bira's most recognizable mark — was designed as an act of deliberate irreverence against category convention. The monkey mascot follows the same logic: the wild, playful side every drinker carries. Together these elements built one of India's fastest-growing beer brands, reaching 30% share in the premium segment without traditional advertising spend.</div>
+      <div class="body-text">The German extension, <em>Bira 91 DE</em>, brings this philosophy to one of Europe's most discerning beer cultures. Bira 91 DE enters not to compete on German beer's terms, but to offer something categorically different: a wheat ale built for flavour, not ritual.</div>
+    </div>
+    <div>
+      <div class="stat"><div class="stat-n">€3.2B</div><div class="stat-d">German craft &amp; premium beer market size (2024 est.) — fastest-growing segment in a mature category</div></div>
+      <div class="stat"><div class="stat-n">13 IBU</div><div class="stat-d">Bira 91 White bitterness — significantly lower than typical German Weißbier (15–20 IBU). Key differentiator for new drinkers</div></div>
+      <div class="stat"><div class="stat-n">500ml</div><div class="stat-d">Primary DE format. German retail standard. 330ml secondary for premium on-trade / gastro placement</div></div>
+      <div class="de-box">
+        <div class="de-box-t">Why Germany, Why Now</div>
+        <div class="de-box-b">Germany's craft segment has grown 18% YoY since 2021, driven by 25–40 urban consumers open to non-German styles. Indian food &amp; culture penetration in Berlin, Munich, Hamburg, Frankfurt creates natural brand awareness infrastructure. Metro Deutschland's wholesale network provides immediate distribution access.</div>
+      </div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Brand Story &amp; Market Rationale · Section 01</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 03 LOGO SYSTEM -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">02</div><div class="pt">Logo System</div></div>
+    <div class="pn">03 / 08</div>
+  </div>
+  <div class="stitle">The Mark</div>
+  <div class="logo-grid">
+    <div class="logo-cell">
+      <div class="logo-lbl">Primary — Dark Background</div>
+      <div class="logo-disp" style="background:var(--g);">
+        <div style="text-align:center;">
+          <div class="logo-txt" style="color:var(--y);"><span class="invB">B</span>IRA 91</div>
+          <div style="font-family:'DM Mono',monospace; font-size:7pt; color:rgba(245,200,0,.55); letter-spacing:.2em; margin-top:2mm;">DEUTSCHLAND</div>
+        </div>
+      </div>
+      <div class="logo-lbl" style="margin-top:3mm;">Use on: dark packaging, POS, trade collateral</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-lbl">Reversed — Light Background</div>
+      <div class="logo-disp" style="background:var(--w); border:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div class="logo-txt" style="color:var(--g);"><span class="invB">B</span>IRA 91</div>
+          <div style="font-family:'DM Mono',monospace; font-size:7pt; color:var(--muted); letter-spacing:.2em; margin-top:2mm;">DEUTSCHLAND</div>
+        </div>
+      </div>
+      <div class="logo-lbl" style="margin-top:3mm;">Use on: white labels, letterhead, digital</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-lbl">Yellow Field (Limited Use)</div>
+      <div class="logo-disp" style="background:var(--y);">
+        <div style="text-align:center;">
+          <div class="logo-txt" style="color:var(--g);"><span class="invB">B</span>IRA 91</div>
+          <div style="font-family:'DM Mono',monospace; font-size:7pt; color:rgba(26,58,42,.6); letter-spacing:.2em; margin-top:2mm;">DEUTSCHLAND</div>
+        </div>
+      </div>
+      <div class="logo-lbl" style="margin-top:3mm;">Use on: promotional items, secondary POS only</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-lbl">DE Variant — Market Identifier</div>
+      <div class="logo-disp" style="background:var(--k);">
+        <div style="text-align:center;">
+          <div style="display:flex; align-items:center; gap:3mm; justify-content:center; margin-bottom:2mm;">
+            <div style="display:flex; flex-direction:column; gap:1mm;">
+              <div class="stripe s-k" style="width:3mm; height:3mm;"></div>
+              <div class="stripe s-r" style="width:3mm; height:3mm;"></div>
+              <div class="stripe s-y" style="width:3mm; height:3mm;"></div>
+            </div>
+            <div class="logo-txt" style="color:var(--y); font-size:17pt;"><span class="invB">B</span>IRA 91</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace; font-size:6pt; color:rgba(245,200,0,.4); letter-spacing:.2em;">CRAFTED FOR DEUTSCHLAND</div>
+        </div>
+      </div>
+      <div class="logo-lbl" style="margin-top:3mm;">DE-exclusive packaging only. Not for global use</div>
+    </div>
+  </div>
+  <div class="clearspace-box">
+    <div class="cs-title">Clearspace Rule</div>
+    <div class="cs-inner">
+      <div>
+        <div class="cs-vis">
+          <div style="position:absolute; top:2mm; left:50%; transform:translateX(-50%); font-family:'DM Mono',monospace; font-size:6pt; color:var(--red);">↕ x</div>
+          <div style="position:absolute; bottom:2mm; left:50%; transform:translateX(-50%); font-family:'DM Mono',monospace; font-size:6pt; color:var(--red);">↕ x</div>
+          <div style="position:absolute; left:2mm; top:50%; transform:translateY(-50%); font-family:'DM Mono',monospace; font-size:6pt; color:var(--red);">x ↔</div>
+          <div style="position:absolute; right:2mm; top:50%; transform:translateY(-50%); font-family:'DM Mono',monospace; font-size:6pt; color:var(--red);">↔ x</div>
+          <div class="cs-logo"><span class="invB">B</span>IRA 91</div>
+        </div>
+        <div class="cs-rule" style="margin-top:3mm;">Minimum clearspace = <strong>x</strong>, where x = cap-height of wordmark. No graphic elements, text, or imagery may enter this zone.</div>
+      </div>
+      <div>
+        <div class="lbl-sm" style="margin-bottom:3mm;">Minimum Sizes</div>
+        <div class="spec-row"><span class="sk">Print (bottle label)</span><span class="sv">18mm width</span></div>
+        <div class="spec-row"><span class="sk">Print (secondary)</span><span class="sv">12mm width</span></div>
+        <div class="spec-row"><span class="sk">Digital</span><span class="sv">80px width</span></div>
+        <div class="spec-row"><span class="sk">Embossed/Debossed</span><span class="sv">22mm width</span></div>
+        <div class="spec-row"><span class="sk">DEUTSCHLAND tag</span><span class="sv">Always paired. Never standalone.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Logo System · Section 02</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 04 COLOR -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">03</div><div class="pt">Color Palette</div></div>
+    <div class="pn">04 / 08</div>
+  </div>
+  <div class="stitle">Color System</div>
+  <div class="color-block">
+    <div class="lbl-sm" style="margin-bottom:3mm;">Primary — Global Bira 91 Identity</div>
+    <div class="swatches">
+      <div class="swatch"><div class="sw-color" style="background:#F5C800;"></div><div class="sw-info"><div class="sw-name">Bira Yellow</div><div class="sw-spec">HEX #F5C800<br>CMYK 0/16/100/4<br>Pantone 116 C<br>RGB 245/200/0</div></div></div>
+      <div class="swatch"><div class="sw-color" style="background:#1A3A2A;"></div><div class="sw-info"><div class="sw-name">Forest Green</div><div class="sw-spec">HEX #1A3A2A<br>CMYK 75/33/68/69<br>Pantone 350 C<br>RGB 26/58/42</div></div></div>
+      <div class="swatch"><div class="sw-color" style="background:#FAF7F0; border:.5px solid #ddd;"></div><div class="sw-info"><div class="sw-name">Cream White</div><div class="sw-spec">HEX #FAF7F0<br>CMYK 0/1/4/2<br>Pantone 9182 C<br>RGB 250/247/240</div></div></div>
+      <div class="swatch"><div class="sw-color" style="background:#0F0F0F;"></div><div class="sw-info"><div class="sw-name">Deep Black</div><div class="sw-spec">HEX #0F0F0F<br>CMYK 0/0/0/96<br>Pantone Black C<br>RGB 15/15/15</div></div></div>
+    </div>
+  </div>
+  <div class="color-block">
+    <div class="lbl-sm" style="margin-bottom:3mm;">DE Extension — Deutschland Market Only</div>
+    <div class="swatches">
+      <div class="swatch"><div class="sw-color" style="background:#C8102E;"></div><div class="sw-info"><div class="sw-name">Deutschrot</div><div class="sw-spec">HEX #C8102E<br>CMYK 2/100/76/11<br>Pantone 186 C<br>RGB 200/16/46</div></div></div>
+      <div class="swatch"><div class="sw-color" style="background:#B8960C;"></div><div class="sw-info"><div class="sw-name">Altgold</div><div class="sw-spec">HEX #B8960C<br>CMYK 12/28/100/30<br>Pantone 1245 C<br>RGB 184/150/12</div></div></div>
+      <div class="swatch"><div class="sw-color" style="background:#2C2C2C;"></div><div class="sw-info"><div class="sw-name">Anthrazit</div><div class="sw-spec">HEX #2C2C2C<br>CMYK 0/0/0/84<br>Pantone 419 C<br>RGB 44/44/44</div></div></div>
+    </div>
+  </div>
+  <div class="usage-note"><strong>Usage hierarchy:</strong> Bira Yellow leads on all packaging and POS. Forest Green is the dominant background. DE Extension colors (Deutschrot, Altgold) are used exclusively on DE-market packaging — never on global Bira 91 materials. Cream White is the primary substrate color; always specify as Pantone 9182 C to avoid warm/cool white mismatches in offset print runs. Verify all colors against physical Pantone chips before final press approval — screen representation is non-contractual.</div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Color Palette · Section 03</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 05 TYPOGRAPHY -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">04</div><div class="pt">Typography</div></div>
+    <div class="pn">05 / 08</div>
+  </div>
+  <div class="stitle">Type System</div>
+  <div class="type-sec">
+    <div class="lbl-sm" style="margin-bottom:3mm;">Display — Brand Headlines &amp; Hero Text</div>
+    <div class="type-spec">
+      <div class="t-display">Das Bier für alle.</div>
+      <div style="font-family:'Playfair Display',serif; font-size:13pt; color:var(--muted); font-style:italic; margin-bottom:3mm;">The beer for everyone.</div>
+      <div class="t-meta">
+        <div><div class="tm-lbl">Font</div><div class="tm-val">Playfair Display</div></div>
+        <div><div class="tm-lbl">Weights</div><div class="tm-val">Regular 400 · Bold 700 · Black 900</div></div>
+        <div><div class="tm-lbl">Use Case</div><div class="tm-val">Headlines, hero, packaging front panel</div></div>
+        <div><div class="tm-lbl">Min Print Size</div><div class="tm-val">12pt</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="type-sec">
+    <div class="lbl-sm" style="margin-bottom:3mm;">Body — Running Text, Descriptions, Legal</div>
+    <div class="type-spec">
+      <div class="t-body">Bira 91 DE ist ein handwerklich gebrautes Weizenbier mit 5,0% Vol. Gebraut mit ausgewählten Zutaten für ein frisches, aromatisches Trinkerlebnis. Alkohol in Maßen genießen.</div>
+      <div class="t-body" style="font-size:8pt; color:var(--muted); margin-top:3mm;">(8pt — minimum for regulatory text per LMIV / EU 1169/2011)</div>
+      <div class="t-meta">
+        <div><div class="tm-lbl">Font</div><div class="tm-val">DM Sans</div></div>
+        <div><div class="tm-lbl">Weights</div><div class="tm-val">Light 300 · Regular 400 · Medium 500</div></div>
+        <div><div class="tm-lbl">Min Print Size</div><div class="tm-val">7pt regulatory · 8pt body</div></div>
+        <div><div class="tm-lbl">Line Height</div><div class="tm-val">1.65–1.75</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="type-sec">
+    <div class="lbl-sm" style="margin-bottom:3mm;">Monospace — Specs, Codes, Technical Data</div>
+    <div class="type-spec">
+      <div class="t-mono" style="font-size:9pt;">PANTONE 116 C · CMYK 0/16/100/4 · VOL 5.0% · 500ml · MHD: SIEHE BODEN</div>
+      <div class="t-meta">
+        <div><div class="tm-lbl">Font</div><div class="tm-val">DM Mono</div></div>
+        <div><div class="tm-lbl">Use Case</div><div class="tm-val">Print specs, batch codes, nutritional callouts</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="legal-note"><strong>German Label Compliance (LMIV / EU 1169/2011):</strong> All mandatory declarations (ABV, allergens, volume, best-before) require minimum 1.2mm x-height. DM Sans at 7pt on uncoated stock meets this threshold. Playfair Display must not be used for regulatory text — high stroke contrast reduces legibility at small sizes. Umlaut characters (ä, ö, ü, ß) must be embedded in all PDF exports — do not use substitution glyphs. Verify all German copy with a native speaker before press approval.</div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Typography · Section 04</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 06 PRINT SPECS -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">05</div><div class="pt">Print Specifications</div></div>
+    <div class="pn">06 / 08</div>
+  </div>
+  <div class="stitle">Print &amp; Substrate Specs</div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-title">500ml Bottle Label — Primary DE Format</div>
+      <div class="spec-row"><span class="sk">Label size</span><span class="sv">90mm × 120mm</span></div>
+      <div class="spec-row"><span class="sk">Bleed</span><span class="sv">3mm all sides</span></div>
+      <div class="spec-row"><span class="sk">Safe zone</span><span class="sv">5mm inside trim</span></div>
+      <div class="spec-row"><span class="sk">Print process</span><span class="sv">Offset litho (5-color)</span></div>
+      <div class="spec-row"><span class="sk">Color mode</span><span class="sv">CMYK + Pantone 116 C</span></div>
+      <div class="spec-row"><span class="sk">Substrate</span><span class="sv">Wet-strength paper 80gsm</span></div>
+      <div class="spec-row"><span class="sk">Finish</span><span class="sv">Matte OPV + spot UV (logo)</span></div>
+      <div class="spec-row"><span class="sk">Resolution</span><span class="sv">300 dpi minimum</span></div>
+      <div class="spec-row"><span class="sk">PDF export</span><span class="sv">PDF/X-1a, ISO Coated v2</span></div>
+      <div class="spec-row"><span class="sk">Max ink density</span><span class="sv">300% TAC</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">330ml Can — Premium On-Trade Format</div>
+      <div class="spec-row"><span class="sk">Sleeve type</span><span class="sv">Shrink sleeve, full-wrap</span></div>
+      <div class="spec-row"><span class="sk">Flat artwork size</span><span class="sv">218mm × 115mm</span></div>
+      <div class="spec-row"><span class="sk">Bleed</span><span class="sv">5mm top/bottom, 8mm sides</span></div>
+      <div class="spec-row"><span class="sk">Print process</span><span class="sv">Gravure (7-color)</span></div>
+      <div class="spec-row"><span class="sk">Substrate</span><span class="sv">PET film, 50µm</span></div>
+      <div class="spec-row"><span class="sk">Shrink %</span><span class="sv">15% horizontal, 2% vertical</span></div>
+      <div class="spec-row"><span class="sk">Color mode</span><span class="sv">CMYK + Pantone 116 C</span></div>
+      <div class="spec-row"><span class="sk">Logo placement</span><span class="sv">Front panel, above midline</span></div>
+      <div class="spec-row"><span class="sk">Seam allowance</span><span class="sv">8mm each side — no key art</span></div>
+      <div class="spec-row"><span class="sk">PDF export</span><span class="sv">PDF/X-4, ISO Coated v2</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Pantone Color Reference</div>
+      <div class="pantone-chip"><div class="chip-dot" style="background:#F5C800;"></div><div><div class="chip-name">Bira Yellow</div><div class="chip-code">Pantone 116 C · CMYK 0/16/100/4</div></div></div>
+      <div class="pantone-chip"><div class="chip-dot" style="background:#1A3A2A;"></div><div><div class="chip-name">Forest Green</div><div class="chip-code">Pantone 350 C · CMYK 75/33/68/69</div></div></div>
+      <div class="pantone-chip"><div class="chip-dot" style="background:#C8102E;"></div><div><div class="chip-name">Deutschrot (DE only)</div><div class="chip-code">Pantone 186 C · CMYK 2/100/76/11</div></div></div>
+      <div class="pantone-chip"><div class="chip-dot" style="background:#B8960C;"></div><div><div class="chip-name">Altgold (DE only)</div><div class="chip-code">Pantone 1245 C · CMYK 12/28/100/30</div></div></div>
+      <div class="pantone-chip"><div class="chip-dot" style="background:#FAF7F0; border:1px solid #ccc;"></div><div><div class="chip-name">Cream White (substrate)</div><div class="chip-code">Pantone 9182 C · specify explicitly to printer</div></div></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Barcode &amp; Regulatory Requirements</div>
+      <div class="spec-row"><span class="sk">Barcode type</span><span class="sv">EAN-13</span></div>
+      <div class="spec-row"><span class="sk">Min barcode size</span><span class="sv">SC2 (80% magnification)</span></div>
+      <div class="spec-row"><span class="sk">Barcode color</span><span class="sv">Black bars on white/cream</span></div>
+      <div class="spec-row"><span class="sk">Quiet zone</span><span class="sv">3.63mm each side minimum</span></div>
+      <div class="spec-row"><span class="sk">ABV declaration</span><span class="sv">Mandatory · min 1.2mm x-height</span></div>
+      <div class="spec-row"><span class="sk">Volume declaration</span><span class="sv">e-mark + ml, mandatory</span></div>
+      <div class="spec-row"><span class="sk">Allergen callout</span><span class="sv">Bold in ingredients (LMIV)</span></div>
+      <div class="spec-row"><span class="sk">Country of origin</span><span class="sv">"Gebraut in Indien / India"</span></div>
+      <div class="spec-row"><span class="sk">Recycling symbol</span><span class="sv">DPG Pfand mark (mandatory)</span></div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Print Specifications · Section 05</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 07 DO/DONT -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">06</div><div class="pt">Do / Don't</div></div>
+    <div class="pn">07 / 08</div>
+  </div>
+  <div class="stitle">Brand Usage Rules</div>
+  <div class="dd-grid">
+    <div>
+      <div class="dd-hdr do-hdr"><div class="dd-icon do-icon">✓</div><div class="dd-heading">Do</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Always use the inverted B as part of the wordmark. It is Bira's primary differentiator and must never be replaced with a standard "B".</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Apply the DEUTSCHLAND sub-tag on all DE-market packaging. Pantone-matched yellow or cream white only.</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Use wet-strength 80gsm paper for all bottle labels. German retail environments (refrigeration, condensation) require it.</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Embed all fonts and Pantone references in every press-ready PDF. Verify umlaut rendering (ä, ö, ü, ß) before sending to printer.</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Include the DPG Pfand recycling deposit mark on all 500ml bottle labels sold through German retail. Legal requirement.</div></div>
+      <div class="dd-item do-item"><div class="dd-bul do-bul">✓</div><div class="dd-text">Use the monkey mascot consistently across all touchpoints. It is the emotional anchor of the brand.</div></div>
+    </div>
+    <div>
+      <div class="dd-hdr dn-hdr"><div class="dd-icon dn-icon">✗</div><div class="dd-heading">Don't</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never use Deutschrot or Altgold on global Bira 91 materials. These colors are DE-market exclusive and will create brand inconsistency.</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never place the logo on mid-tone backgrounds (grey, tan, olive). Contrast ratio drops below 3:1, failing legibility at shelf distance.</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never stretch, rotate, or apply drop shadows to the wordmark. The inverted B already creates tension — additional distortion destroys legibility.</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never use Playfair Display for regulatory or nutritional text. Its stroke contrast reduces legibility below 10pt. DM Sans mandatory for all small-print legal copy.</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never approve RGB files for print. All artwork must be CMYK with embedded ICC profile (ISO Coated v2). RGB conversion causes unpredictable shifts on Pantone 116 C.</div></div>
+      <div class="dd-item dn-item"><div class="dd-bul dn-bul">✗</div><div class="dd-text">Never translate the "91" numeral. It encodes India's country code — it is a brand constant, not a number to localize.</div></div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Do / Don't · Section 06</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+<!-- PAGE 08 PACKAGING APPLICATION + SIGNOFF -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">07</div><div class="pt">Packaging Application &amp; Sign-Off</div></div>
+    <div class="pn">08 / 08</div>
+  </div>
+  <div class="stitle">Application Mockups</div>
+  <div class="pkg-grid">
+    <div class="pkg-cell">
+      <div class="pkg-hdr">500ml Bottle Label — Front Panel</div>
+      <div class="pkg-body">
+        <div class="label-mock">
+          <div style="display:flex; gap:1.5mm; margin-bottom:1mm;">
+            <div class="stripe s-k" style="width:2.5mm; height:9mm; border-radius:1px;"></div>
+            <div class="stripe s-r" style="width:2.5mm; height:9mm; border-radius:1px;"></div>
+            <div class="stripe s-y" style="width:2.5mm; height:9mm; border-radius:1px;"></div>
+          </div>
+          <div class="lm-tag">DEUTSCHLAND EDITION</div>
+          <div class="lm-line"></div>
+          <div class="lm-brand"><span class="invB">B</span>IRA 91</div>
+          <div class="lm-line"></div>
+          <div class="lm-style">Weizenbier · Wheat Ale</div>
+          <div class="lm-abv">5.0% Vol · 500ml</div>
+          <div style="font-size:6pt; color:rgba(250,247,240,.35); margin-top:2mm; font-family:'DM Mono',monospace;">MHD: SIEHE BODEN · DPG PFAND</div>
+        </div>
+        <ul class="spec-list">
+          <li><span>Label dimensions</span><span class="spec-pill">90 × 120mm</span></li>
+          <li><span>Substrate</span><span class="spec-pill">80gsm wet-strength</span></li>
+          <li><span>Finish</span><span class="spec-pill">Matte OPV + spot UV</span></li>
+          <li><span>Colors</span><span class="spec-pill">CMYK + PMS 116 C</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pkg-cell">
+      <div class="pkg-hdr">330ml Can — Shrink Sleeve Front</div>
+      <div class="pkg-body">
+        <div class="label-mock" style="background:linear-gradient(160deg,#0F0F0F,#1A1A1A,#0F0F0F); border-radius:6px;">
+          <div class="lm-tag" style="font-size:6pt;">BIRA 91 · DEUTSCHLAND · CRAFT WHEAT ALE</div>
+          <div style="font-family:'Playfair Display',serif; font-size:24pt; font-weight:900; color:var(--y); line-height:1;"><span class="invB">B</span>91</div>
+          <div style="width:18mm; height:18mm; border-radius:50%; background:rgba(245,200,0,.1); border:1px solid rgba(245,200,0,.3); display:flex; align-items:center; justify-content:center; font-size:14pt;">🐒</div>
+          <div class="lm-abv" style="font-size:7pt;">5.0% · 330ml</div>
+        </div>
+        <ul class="spec-list">
+          <li><span>Flat artwork</span><span class="spec-pill">218 × 115mm</span></li>
+          <li><span>Substrate</span><span class="spec-pill">PET film 50µm</span></li>
+          <li><span>Process</span><span class="spec-pill">Gravure 7-color</span></li>
+          <li><span>Shrink %</span><span class="spec-pill">15% horizontal</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ai-note"><strong>AI-Assisted Production Note:</strong> This style guide was produced using an AI-assisted design pipeline. Brand references and visual system built using <strong>Midjourney v6</strong> (product imagery), written and spec'd using <strong>Claude Sonnet</strong> (copy, regulatory text, print specifications), assembled in <strong>Canva Pro</strong> (layout, export). Final press certification, physical Pantone chip verification, and regulatory compliance sign-off remain specialist human steps. This document demonstrates that 80%+ of brand standards documentation is fully automatable with current AI tooling. Estimated time to produce: ~4 hours vs. 3–5 days traditional workflow.</div>
+  <div class="signoff">
+    <div>
+      <div class="so-brand"><span class="invB">B</span>IRA 91 · DE</div>
+      <div class="so-sub">Brand Style Guide v1.0 · Deutschland Market Extension · 2025</div>
+    </div>
+    <div class="so-r">Midjourney v6 · Canva Pro · Claude Sonnet<br>MGSC Design Operations Showcase · 2025<br>08 / 08 · FINAL</div>
+  </div>
+  <div class="pf" style="margin-top:4mm;"><div class="pf-ref">Bira 91 DE · Brand Style Guide · Packaging Application &amp; Sign-Off · Section 07</div><div class="pf-logo">BIRA 91</div></div>
+</div>
+
+</body>
+</html>

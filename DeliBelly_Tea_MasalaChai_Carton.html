@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deli Belly Tea — Masala Chai Folding Carton</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --saffron:#E8821A;
+  --saffron-light:#FAE0C0;
+  --saffron-dark:#9A520A;
+  --burg:#7A1A2A;
+  --burg-light:#EDD0D5;
+  --burg-dark:#4A0A14;
+  --cream:#FAF5EC;
+  --gold:#C4960A;
+  --ink:#1A1008;
+  --muted:#6B5A40;
+  --border:#DDD0B8;
+  --bg:#FAF5EC;
+  --green:#1A3A1A;
+}
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink); font-size:10pt; }
+.page { width:210mm; height:297mm; margin:0 auto 2mm; background:var(--bg); position:relative; overflow:hidden; page-break-after:always; display:flex; flex-direction:column; }
+.page:last-child { page-break-after:avoid !important; break-after:avoid !important; }
+@media print { body{margin:0} .page{margin:0;page-break-after:always;} .page:last-child{page-break-after:avoid !important;} @page{size:A4 portrait;margin:0;} }
+
+/* SHARED */
+.int { padding:13mm 15mm 11mm; flex:1; display:flex; flex-direction:column; }
+.ph { display:flex; justify-content:space-between; align-items:center; padding-bottom:4mm; border-bottom:1px solid var(--border); margin-bottom:7mm; }
+.ph-l { display:flex; align-items:center; gap:4mm; }
+.pm { font-family:'Playfair Display',serif; font-size:8.5pt; font-weight:700; color:white; padding:1.5mm 3.5mm; border-radius:2px; background:var(--saffron); }
+.pt { font-size:7.5pt; font-weight:500; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+.pn { font-family:'DM Mono',monospace; font-size:7pt; color:var(--muted); }
+.pf { margin-top:auto; padding-top:4mm; border-top:.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.pf-ref { font-family:'DM Mono',monospace; font-size:6pt; color:var(--muted); line-height:1.6; }
+.pf-brand { font-family:'Playfair Display',serif; font-size:10pt; font-weight:700; color:var(--saffron); }
+.stitle { font-family:'Playfair Display',serif; font-size:24pt; font-weight:900; color:var(--ink); line-height:1; margin-bottom:5mm; }
+.lbl-sm { font-size:6.5pt; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.spec-row { display:flex; justify-content:space-between; align-items:baseline; padding:2mm 0; border-bottom:.5px solid #E8DFC8; }
+.spec-row:last-child { border-bottom:none; }
+.sk { font-size:7pt; color:var(--muted); }
+.sv { font-family:'DM Mono',monospace; font-size:7pt; font-weight:500; color:var(--ink); }
+
+/* ═══ PAGE 01 COVER ═══ */
+.cover { background:var(--burg); height:297mm; padding:0; display:flex; flex-direction:column; overflow:hidden; }
+.cover-top-band { background:var(--saffron); height:3mm; width:100%; }
+.cover-inner { flex:1; padding:14mm 16mm 12mm; display:flex; flex-direction:column; justify-content:space-between; }
+.cover-header { display:flex; justify-content:space-between; align-items:flex-start; }
+.cover-wm { font-family:'Playfair Display',serif; font-size:11pt; font-weight:700; color:rgba(250,245,236,.45); letter-spacing:.12em; }
+.cover-ref { font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(250,245,236,.25); letter-spacing:.1em; text-align:right; line-height:1.7; }
+.cover-center { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.cover-hindi { font-size:13pt; color:rgba(232,130,26,.7); letter-spacing:.05em; margin-bottom:3mm; font-weight:300; }
+.cover-brand { font-family:'Playfair Display',serif; font-size:44pt; font-weight:900; color:var(--cream); line-height:.9; letter-spacing:-.01em; }
+.cover-brand-sub { font-family:'Playfair Display',serif; font-size:18pt; font-weight:400; font-style:italic; color:var(--saffron); margin-top:2mm; letter-spacing:.02em; }
+.cover-divider { width:30mm; height:1px; background:rgba(232,130,26,.4); margin:5mm auto; }
+.cover-variant { font-size:8.5pt; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:rgba(250,245,236,.55); }
+.cover-box-preview { margin-top:8mm; display:flex; justify-content:center; }
+.cover-footer { border-top:.5px solid rgba(250,245,236,.12); padding-top:5mm; display:flex; justify-content:space-between; }
+.cft-l { font-size:7pt; color:rgba(250,245,236,.3); line-height:1.75; }
+.cft-r { font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(232,130,26,.35); text-align:right; line-height:1.7; }
+
+/* ═══ PAGE 02 BRAND STORY ═══ */
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:8mm; flex:1; }
+.pull-quote { font-family:'Playfair Display',serif; font-size:16pt; font-weight:700; line-height:1.3; border-left:3px solid var(--saffron); padding-left:5mm; margin-bottom:5mm; color:var(--ink); }
+.body-text { font-size:8pt; line-height:1.75; color:var(--ink); margin-bottom:4mm; }
+.stat-box { background:var(--burg); padding:4.5mm 5.5mm; border-radius:3px; margin-bottom:4mm; }
+.stat-n { font-family:'Playfair Display',serif; font-size:22pt; font-weight:900; color:var(--saffron); line-height:1; }
+.stat-d { font-size:7pt; color:rgba(250,245,236,.65); margin-top:1.5mm; line-height:1.5; }
+.spice-list { background:var(--saffron-light); border:1px solid var(--border); border-left:3px solid var(--saffron); padding:4.5mm 5.5mm; border-radius:0 3px 3px 0; margin-bottom:4mm; }
+.spice-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--saffron-dark); margin-bottom:3mm; }
+.spice-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5mm; }
+.spice-item { font-size:7.5pt; color:var(--ink); display:flex; align-items:center; gap:2mm; }
+.spice-dot { width:3mm; height:3mm; border-radius:50%; background:var(--saffron); flex-shrink:0; }
+.brief-box { background:var(--cream); border:1px solid var(--border); border-radius:3px; padding:5mm; }
+.brief-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3mm; padding-bottom:2.5mm; border-bottom:1px solid var(--border); }
+
+/* ═══ PAGE 03 DIELINE ═══ */
+.dieline-page { background:#F0EBE0; }
+.dieline-area { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
+.dieline-legend { display:flex; gap:6mm; justify-content:center; margin-top:5mm; flex-wrap:wrap; }
+.dl-leg { display:flex; align-items:center; gap:2mm; font-size:6.5pt; color:var(--muted); font-family:'DM Mono',monospace; }
+.dl-leg-line { width:10mm; height:2px; }
+
+/* ═══ PAGE 04 3D MOCKUP ═══ */
+.mockup-grid { display:grid; grid-template-columns:1fr 1fr; gap:8mm; flex:1; }
+.mockup-area { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3mm; }
+.mockup-label { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-align:center; }
+.breakdown-area { display:flex; flex-direction:column; gap:4mm; }
+.breakdown-card { border:1px solid var(--border); border-radius:3px; padding:4.5mm 5mm; }
+.bc-title { font-size:7pt; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:3.5mm; padding-bottom:2mm; border-bottom:1px solid var(--border); }
+
+/* ═══ PAGE 05 COLOR + TYPE ═══ */
+.ct-grid { display:grid; grid-template-columns:1fr 1fr; gap:8mm; flex:1; }
+.swatch-row { display:flex; gap:3mm; margin-bottom:5mm; }
+.swatch { flex:1; border-radius:3px; overflow:hidden; border:1px solid var(--border); }
+.sw-color { height:18mm; }
+.sw-info { padding:2.5mm 3mm; background:white; }
+.sw-name { font-size:7pt; font-weight:600; margin-bottom:1mm; }
+.sw-spec { font-family:'DM Mono',monospace; font-size:5.5pt; color:var(--muted); line-height:1.7; }
+.type-spec { border:1px solid var(--border); border-radius:3px; padding:4.5mm 5mm; margin-bottom:4mm; }
+
+/* ═══ PAGE 06 PRINT SPECS ═══ */
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
+.spec-card { border:1px solid var(--border); border-radius:3px; padding:4.5mm 5.5mm; }
+.sc-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3.5mm; padding-bottom:2mm; border-bottom:1px solid var(--border); }
+.signoff { background:var(--burg); padding:5mm 6mm; border-radius:3px; display:flex; justify-content:space-between; align-items:center; margin-top:5mm; }
+.so-brand { font-family:'Playfair Display',serif; font-size:14pt; font-weight:900; color:var(--saffron); }
+.so-sub { font-size:6.5pt; color:rgba(250,245,236,.45); margin-top:1mm; font-family:'DM Mono',monospace; }
+.so-r { font-family:'DM Mono',monospace; font-size:6pt; color:rgba(232,130,26,.4); text-align:right; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     PAGE 01 — COVER
+═══════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top-band"></div>
+  <div class="cover-inner">
+    <div class="cover-header">
+      <div class="cover-wm">DELI BELLY TEA</div>
+      <div class="cover-ref">FOLDING CARTON SYSTEM<br>REVERSE TUCK-END · MASALA CHAI<br>CLIENT REVIEW DRAFT · 2025</div>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-hindi">असली मसाला, असली चाय</div>
+      <div class="cover-brand">Deli Belly<br>Tea</div>
+      <div class="cover-brand-sub">Masala Chai</div>
+      <div class="cover-divider"></div>
+      <div class="cover-variant">Premium Spiced Blend · 20 Tea Bags · 40g</div>
+
+      <!-- SVG box preview on cover -->
+      <div class="cover-box-preview">
+        <svg width="160" height="180" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- 3D box isometric front -->
+          <!-- Front face -->
+          <polygon points="30,60 110,60 110,160 30,160" fill="#7A1A2A" stroke="rgba(250,245,236,0.2)" stroke-width="0.5"/>
+          <!-- Top face -->
+          <polygon points="30,60 110,60 130,40 50,40" fill="#9A2A3A" stroke="rgba(250,245,236,0.2)" stroke-width="0.5"/>
+          <!-- Side face -->
+          <polygon points="110,60 130,40 130,140 110,160" fill="#5A0A1A" stroke="rgba(250,245,236,0.2)" stroke-width="0.5"/>
+          <!-- Front panel design elements -->
+          <!-- Saffron band top -->
+          <rect x="30" y="60" width="80" height="8" fill="#E8821A" opacity="0.9"/>
+          <!-- Brand name area -->
+          <rect x="30" y="68" width="80" height="30" fill="#7A1A2A"/>
+          <text x="70" y="80" font-family="serif" font-size="8" font-weight="bold" fill="#FAE0C0" text-anchor="middle">Deli Belly</text>
+          <text x="70" y="90" font-family="serif" font-size="6" fill="#E8821A" text-anchor="middle" font-style="italic">Tea</text>
+          <!-- Spice illustration zone -->
+          <rect x="30" y="98" width="80" height="40" fill="#6A0A1A"/>
+          <!-- Star anise simplified -->
+          <circle cx="70" cy="118" r="10" fill="none" stroke="#E8821A" stroke-width="1" opacity="0.5"/>
+          <circle cx="70" cy="118" r="3" fill="#E8821A" opacity="0.7"/>
+          <line x1="70" y1="108" x2="70" y2="128" stroke="#E8821A" stroke-width="0.8" opacity="0.5"/>
+          <line x1="60" y1="118" x2="80" y2="118" stroke="#E8821A" stroke-width="0.8" opacity="0.5"/>
+          <line x1="63" y1="111" x2="77" y2="125" stroke="#E8821A" stroke-width="0.8" opacity="0.5"/>
+          <line x1="77" y1="111" x2="63" y2="125" stroke="#E8821A" stroke-width="0.8" opacity="0.5"/>
+          <!-- Saffron band bottom -->
+          <rect x="30" y="138" width="80" height="6" fill="#E8821A" opacity="0.7"/>
+          <!-- Weight text -->
+          <text x="70" y="152" font-family="monospace" font-size="5" fill="rgba(250,245,236,0.5)" text-anchor="middle">20 TEA BAGS · 40g</text>
+          <!-- Side face details -->
+          <rect x="110" y="60" width="20" height="8" fill="#C4780A" opacity="0.6"/>
+          <rect x="110" y="68" width="20" height="70" fill="#5A0A1A"/>
+          <text x="120" y="108" font-family="serif" font-size="5" fill="rgba(250,245,236,0.4)" text-anchor="middle" transform="rotate(90,120,108)">MASALA CHAI</text>
+          <rect x="110" y="138" width="20" height="6" fill="#C4780A" opacity="0.5"/>
+          <!-- Top face details -->
+          <polygon points="30,60 110,60 130,40 50,40" fill="#9A2A3A" opacity="0.8"/>
+          <text x="80" y="52" font-family="monospace" font-size="4" fill="rgba(250,245,236,0.3)" text-anchor="middle">REVERSE TUCK</text>
+          <!-- Shadow -->
+          <ellipse cx="80" cy="168" rx="55" ry="6" fill="rgba(0,0,0,0.3)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div class="cft-l">Prepared by: Brand Packaging Studio<br>Tools: Adobe Illustrator CC · Esko ArtPro+ · Adobe Dimension · Pantone Connect<br>Project duration: 5 working days</div>
+      <div class="cft-r">Deli Belly Tea · Masala Chai Carton v1.0<br>Confidential — Client Review Only<br>01 / 06</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 02 — BRAND STORY
+═══════════════════════════════ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">01</div><div class="pt">Brand Story & Design Brief</div></div>
+    <div class="pn">02 / 06</div>
+  </div>
+  <div class="stitle">The Brief</div>
+  <div class="story-grid">
+    <div>
+      <div class="pull-quote">Deli Belly knows<br>what North India<br>tastes like.</div>
+      <div class="body-text">Deli Belly has spent years feeding Pune's appetite for authentic North Indian food — the kind of food that comes with a mandatory chai break. The launch of Deli Belly Tea is not a category stretch. It is the natural next chapter: bringing the same philosophy of honest, spiced, uncompromising flavour to the morning cup.</div>
+      <div class="body-text">The Masala Chai variant is the anchor SKU. It is built on a 7-spice blend that mirrors the dhaba-style chai that Deli Belly's kitchen team has been brewing for staff since day one. That recipe — turmeric, ginger, cardamom, cinnamon, clove, black pepper, and star anise — is now inside every tea bag.</div>
+      <div class="body-text">The packaging brief: premium enough for a gift, honest enough for a daily shelf. The reverse tuck-end carton format was chosen for structural security and clean front-panel impact at retail. The color language borrows from the spice rack — saffron, burgundy, turmeric gold — grounded in cream to signal purity of ingredients.</div>
+      <div class="spice-list">
+        <div class="spice-title">7-Spice Blend — Front Panel Claim</div>
+        <div class="spice-grid">
+          <div class="spice-item"><div class="spice-dot"></div>Ginger</div>
+          <div class="spice-item"><div class="spice-dot"></div>Cardamom</div>
+          <div class="spice-item"><div class="spice-dot"></div>Cinnamon</div>
+          <div class="spice-item"><div class="spice-dot"></div>Clove</div>
+          <div class="spice-item"><div class="spice-dot"></div>Black Pepper</div>
+          <div class="spice-item"><div class="spice-dot"></div>Star Anise</div>
+          <div class="spice-item"><div class="spice-dot"></div>Turmeric</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-box"><div class="stat-n">₹399</div><div class="stat-d">Recommended retail price · 20 tea bag carton · Premium tier positioning in Pune specialty retail</div></div>
+      <div class="stat-box"><div class="stat-n">40g</div><div class="stat-d">Net weight · 2g per bag · Standard masala chai steep weight for full-flavour extraction</div></div>
+      <div class="stat-box" style="margin-bottom:0;"><div class="stat-n">7</div><div class="stat-d">Spices in the blend · All whole-spice sourced · No artificial flavouring or preservatives</div></div>
+      <div style="height:4mm;"></div>
+      <div class="brief-box">
+        <div class="brief-title">Packaging Brief Summary</div>
+        <div class="spec-row"><span class="sk">Carton type</span><span class="sv">Reverse tuck-end</span></div>
+        <div class="spec-row"><span class="sk">Dimensions (W×D×H)</span><span class="sv">65 × 40 × 95mm</span></div>
+        <div class="spec-row"><span class="sk">Board weight</span><span class="sv">350gsm SBS</span></div>
+        <div class="spec-row"><span class="sk">Print process</span><span class="sv">Offset litho, 4-color + 2 Pantone</span></div>
+        <div class="spec-row"><span class="sk">Finish</span><span class="sv">Soft-touch matte + spot UV</span></div>
+        <div class="spec-row"><span class="sk">Primary market</span><span class="sv">Pune specialty retail + Deli Belly outlets</span></div>
+        <div class="spec-row"><span class="sk">Secondary</span><span class="sv">Gift retail, online DTC</span></div>
+        <div class="spec-row"><span class="sk">Regulatory</span><span class="sv">FSSAI compliant · India food labelling</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Deli Belly Tea · Masala Chai Carton · Brand Story & Design Brief · Section 01</div><div class="pf-brand">Deli Belly Tea</div></div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 03 — DIELINE
+═══════════════════════════════ -->
+<div class="page dieline-page" style="display:flex; flex-direction:column;">
+  <div style="padding:10mm 15mm 4mm; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border);">
+    <div style="display:flex; align-items:center; gap:4mm;">
+      <div class="pm">02</div>
+      <div class="pt">Reverse Tuck-End Dieline — Flat Unfolded</div>
+    </div>
+    <div class="pn">03 / 06</div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4mm 6mm;">
+    <svg width="540" height="440" viewBox="0 0 540 440" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+
+      <!--
+        ════ CORRECTED REVERSE TUCK-END DIELINE ════
+        Carton: 65mm W × 40mm D × 95mm H
+        Scale: 1mm ≈ 2.1px
+
+        CORRECT flat layout (left → right):
+        [Front 65mm] [Side1 40mm] [Back 65mm] [Side2 40mm] [Glue Flap 12mm]
+        Total width = 222mm → 466px
+
+        CORRECT tuck directions (reverse tuck definition):
+        - Top FRONT tuck  → inserts toward BACK  (folds away from viewer on front)
+        - Top BACK tuck   → inserts toward FRONT (folds away from viewer on back)
+        - Bottom FRONT tuck → inserts toward FRONT (opposite of top front)
+        - Bottom BACK tuck  → inserts toward BACK  (opposite of top back)
+
+        Dust flap depth = ~19mm = 40px (half of 40mm depth)
+        Tuck depth = 20mm = 42px
+        Body height = 95mm = 200px
+
+        X coords (px): Front starts x=30
+          Front: 30–167 (137px = 65mm)
+          Side1: 167–251 (84px = 40mm)
+          Back:  251–388 (137px = 65mm)
+          Side2: 388–472 (84px = 40mm)
+          Glue:  472–497 (25px = 12mm)
+
+        Y coords (px):
+          Top tuck: 55–97   (42px = 20mm)
+          Body:     97–297  (200px = 95mm)
+          Bot tuck: 297–339 (42px = 20mm)
+          Dust flap top: 55–97 on sides (same as tuck but shorter = 40px within that zone, start y=57)
+          Dust flap bot: 297–337 on sides
+      -->
+
+      <!-- ═══ BODY PANELS ═══ -->
+
+      <!-- FRONT PANEL: x=30, y=97, w=137, h=200 -->
+      <rect x="30" y="97" width="137" height="200" fill="rgba(122,26,42,0.09)" stroke="#CC0000" stroke-width="1.8"/>
+      <text x="98" y="191" font-family="serif" font-size="11" font-weight="bold" fill="#7A1A2A" text-anchor="middle">FRONT</text>
+      <text x="98" y="204" font-family="monospace" font-size="7" fill="#6B5A40" text-anchor="middle">65 × 95mm</text>
+      <!-- Design zone guides on front -->
+      <line x1="30" y1="120" x2="167" y2="120" stroke="#E8821A" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.5"/>
+      <line x1="30" y1="270" x2="167" y2="270" stroke="#E8821A" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.5"/>
+      <text x="98" y="116" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle" opacity="0.7">brand header zone</text>
+      <text x="98" y="282" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle" opacity="0.7">regulatory / barcode zone</text>
+
+      <!-- SIDE PANEL 1: x=167, y=97, w=84, h=200 -->
+      <rect x="167" y="97" width="84" height="200" fill="rgba(232,130,26,0.07)" stroke="#CC0000" stroke-width="1.8"/>
+      <text x="209" y="191" font-family="serif" font-size="9" font-weight="bold" fill="#7A1A2A" text-anchor="middle">SIDE 1</text>
+      <text x="209" y="203" font-family="monospace" font-size="7" fill="#6B5A40" text-anchor="middle">40 × 95mm</text>
+
+      <!-- BACK PANEL: x=251, y=97, w=137, h=200 -->
+      <rect x="251" y="97" width="137" height="200" fill="rgba(122,26,42,0.06)" stroke="#CC0000" stroke-width="1.8"/>
+      <text x="319" y="191" font-family="serif" font-size="11" font-weight="bold" fill="#7A1A2A" text-anchor="middle">BACK</text>
+      <text x="319" y="204" font-family="monospace" font-size="7" fill="#6B5A40" text-anchor="middle">65 × 95mm</text>
+
+      <!-- SIDE PANEL 2: x=388, y=97, w=84, h=200 -->
+      <rect x="388" y="97" width="84" height="200" fill="rgba(232,130,26,0.07)" stroke="#CC0000" stroke-width="1.8"/>
+      <text x="430" y="191" font-family="serif" font-size="9" font-weight="bold" fill="#7A1A2A" text-anchor="middle">SIDE 2</text>
+      <text x="430" y="203" font-family="monospace" font-size="7" fill="#6B5A40" text-anchor="middle">40 × 95mm</text>
+
+      <!-- GLUE FLAP: x=472, y=97, w=25, h=200 — RIGHT of Side 2, correct industry position -->
+      <polygon points="472,97 497,97 497,297 472,297 484,197" fill="rgba(232,130,26,0.18)" stroke="#CC6600" stroke-width="1.5" stroke-dasharray="5,2"/>
+      <text x="476" y="200" font-family="monospace" font-size="6" fill="#9A520A" transform="rotate(90,476,200)" text-anchor="middle">GLUE FLAP 12mm</text>
+      <!-- Glue application zone indicator -->
+      <rect x="472" y="107" width="20" height="180" fill="rgba(232,130,26,0.12)" stroke="none"/>
+      <text x="482" y="197" font-family="monospace" font-size="5" fill="#CC6600" text-anchor="middle" transform="rotate(90,482,197)">apply hot-melt here</text>
+
+      <!-- ═══ TOP TUCK FLAPS ═══ -->
+
+      <!-- TOP TUCK — FRONT: folds toward BACK (inserts into back opening) -->
+      <!-- Tab curves UPWARD (away from body) — convex arc pointing up -->
+      <rect x="30" y="55" width="137" height="42" fill="rgba(196,150,10,0.12)" stroke="#CC0000" stroke-width="1.8"/>
+      <!-- Tuck tab: convex arc pointing UPWARD (correct — tab inserts down into box) -->
+      <path d="M 55,55 Q 98,30 141,55" fill="rgba(196,150,10,0.22)" stroke="#CC0000" stroke-width="1.5"/>
+      <text x="98" y="76" font-family="monospace" font-size="7" fill="#7A1A2A" text-anchor="middle" font-weight="bold">TOP TUCK — FRONT</text>
+      <text x="98" y="87" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">inserts toward BACK · 20mm depth</text>
+
+      <!-- TOP TUCK — BACK: folds toward FRONT (inserts into front opening) -->
+      <!-- Tab also curves UPWARD — same physical direction on flat blank -->
+      <rect x="251" y="55" width="137" height="42" fill="rgba(196,150,10,0.10)" stroke="#CC0000" stroke-width="1.8"/>
+      <path d="M 276,55 Q 319,30 362,55" fill="rgba(196,150,10,0.18)" stroke="#CC0000" stroke-width="1.5"/>
+      <text x="319" y="76" font-family="monospace" font-size="7" fill="#7A1A2A" text-anchor="middle" font-weight="bold">TOP TUCK — BACK</text>
+      <text x="319" y="87" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">inserts toward FRONT · 20mm depth</text>
+
+      <!-- TOP DUST FLAPS on sides — depth ~19mm = 40px, start y=57 -->
+      <rect x="167" y="57" width="84" height="40" fill="rgba(232,130,26,0.09)" stroke="#CC0000" stroke-width="1.4" stroke-dasharray="3,2"/>
+      <text x="209" y="78" font-family="monospace" font-size="6" fill="#9A520A" text-anchor="middle">DUST FLAP</text>
+      <text x="209" y="87" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">19mm</text>
+
+      <rect x="388" y="57" width="84" height="40" fill="rgba(232,130,26,0.09)" stroke="#CC0000" stroke-width="1.4" stroke-dasharray="3,2"/>
+      <text x="430" y="78" font-family="monospace" font-size="6" fill="#9A520A" text-anchor="middle">DUST FLAP</text>
+      <text x="430" y="87" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">19mm</text>
+
+      <!-- ═══ BOTTOM TUCK FLAPS ═══ -->
+
+      <!-- BOTTOM TUCK — FRONT: folds toward FRONT (OPPOSITE of top front — this is what makes it REVERSE) -->
+      <!-- Tab curves DOWNWARD (convex arc pointing down) -->
+      <rect x="30" y="297" width="137" height="42" fill="rgba(196,150,10,0.12)" stroke="#CC0000" stroke-width="1.8"/>
+      <path d="M 55,339 Q 98,364 141,339" fill="rgba(196,150,10,0.22)" stroke="#CC0000" stroke-width="1.5"/>
+      <text x="98" y="313" font-family="monospace" font-size="7" fill="#7A1A2A" text-anchor="middle" font-weight="bold">BOTTOM TUCK — FRONT</text>
+      <text x="98" y="324" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">inserts toward FRONT · 20mm depth</text>
+
+      <!-- BOTTOM TUCK — BACK: folds toward BACK (OPPOSITE of top back) -->
+      <!-- Tab curves DOWNWARD -->
+      <rect x="251" y="297" width="137" height="42" fill="rgba(196,150,10,0.10)" stroke="#CC0000" stroke-width="1.8"/>
+      <path d="M 276,339 Q 319,364 362,339" fill="rgba(196,150,10,0.18)" stroke="#CC0000" stroke-width="1.5"/>
+      <text x="319" y="313" font-family="monospace" font-size="7" fill="#7A1A2A" text-anchor="middle" font-weight="bold">BOTTOM TUCK — BACK</text>
+      <text x="319" y="324" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">inserts toward BACK · 20mm depth</text>
+
+      <!-- BOTTOM DUST FLAPS — depth 19mm, end at y=337 -->
+      <rect x="167" y="297" width="84" height="40" fill="rgba(232,130,26,0.09)" stroke="#CC0000" stroke-width="1.4" stroke-dasharray="3,2"/>
+      <text x="209" y="315" font-family="monospace" font-size="6" fill="#9A520A" text-anchor="middle">DUST FLAP</text>
+      <text x="209" y="325" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">19mm</text>
+
+      <rect x="388" y="297" width="84" height="40" fill="rgba(232,130,26,0.09)" stroke="#CC0000" stroke-width="1.4" stroke-dasharray="3,2"/>
+      <text x="430" y="315" font-family="monospace" font-size="6" fill="#9A520A" text-anchor="middle">DUST FLAP</text>
+      <text x="430" y="325" font-family="monospace" font-size="5.5" fill="#9A520A" text-anchor="middle">19mm</text>
+
+      <!-- ═══ CREASE LINES — VERTICAL (panel fold lines, dashed blue) ═══ -->
+      <line x1="167" y1="57" x2="167" y2="337" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+      <line x1="251" y1="55" x2="251" y2="339" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+      <line x1="388" y1="57" x2="388" y2="337" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+      <line x1="472" y1="97" x2="472" y2="297" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+
+      <!-- ═══ CREASE LINES — HORIZONTAL (tuck fold lines) ═══ -->
+      <!-- Top crease line (tuck folds here) -->
+      <line x1="30" y1="97" x2="497" y2="97" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+      <!-- Bottom crease line -->
+      <line x1="30" y1="297" x2="472" y2="297" stroke="#0055CC" stroke-width="1.3" stroke-dasharray="7,3"/>
+      <!-- Dust flap crease lines (top and bottom sides) -->
+      <line x1="167" y1="57" x2="251" y2="57" stroke="#0055CC" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <line x1="388" y1="57" x2="472" y2="57" stroke="#0055CC" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <line x1="167" y1="337" x2="251" y2="337" stroke="#0055CC" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+      <line x1="388" y1="337" x2="472" y2="337" stroke="#0055CC" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+
+      <!-- ═══ DIMENSION ANNOTATIONS ═══ -->
+      <!-- W: Front panel -->
+      <line x1="30" y1="415" x2="167" y2="415" stroke="#444" stroke-width="0.8"/>
+      <line x1="30" y1="410" x2="30" y2="420" stroke="#444" stroke-width="0.8"/>
+      <line x1="167" y1="410" x2="167" y2="420" stroke="#444" stroke-width="0.8"/>
+      <text x="98" y="428" font-family="monospace" font-size="7" fill="#444" text-anchor="middle">W = 65mm</text>
+
+      <!-- D: Side panel -->
+      <line x1="167" y1="415" x2="251" y2="415" stroke="#444" stroke-width="0.8"/>
+      <line x1="251" y1="410" x2="251" y2="420" stroke="#444" stroke-width="0.8"/>
+      <text x="209" y="428" font-family="monospace" font-size="7" fill="#444" text-anchor="middle">D = 40mm</text>
+
+      <!-- Glue flap annotation -->
+      <line x1="472" y1="415" x2="497" y2="415" stroke="#CC6600" stroke-width="0.8"/>
+      <line x1="472" y1="410" x2="472" y2="420" stroke="#CC6600" stroke-width="0.8"/>
+      <line x1="497" y1="410" x2="497" y2="420" stroke="#CC6600" stroke-width="0.8"/>
+      <text x="484" y="428" font-family="monospace" font-size="6" fill="#CC6600" text-anchor="middle">12mm</text>
+
+      <!-- H: Body height -->
+      <line x1="512" y1="97" x2="512" y2="297" stroke="#444" stroke-width="0.8"/>
+      <line x1="507" y1="97" x2="517" y2="97" stroke="#444" stroke-width="0.8"/>
+      <line x1="507" y1="297" x2="517" y2="297" stroke="#444" stroke-width="0.8"/>
+      <text x="528" y="201" font-family="monospace" font-size="7" fill="#444" text-anchor="middle" transform="rotate(90,528,201)">H = 95mm</text>
+
+      <!-- Tuck depth annotation -->
+      <line x1="512" y1="55" x2="512" y2="97" stroke="#888" stroke-width="0.6" opacity="0.7"/>
+      <line x1="507" y1="55" x2="517" y2="55" stroke="#888" stroke-width="0.6" opacity="0.7"/>
+      <text x="528" y="78" font-family="monospace" font-size="6" fill="#888" text-anchor="middle" transform="rotate(90,528,78)">tuck 20mm</text>
+
+      <!-- ═══ BLEED + SAFE ZONE ═══ -->
+      <rect x="24" y="49" width="479" height="296" fill="none" stroke="rgba(200,0,0,0.25)" stroke-width="0.6" stroke-dasharray="2,3"/>
+      <text x="30" y="46" font-family="monospace" font-size="5.5" fill="rgba(180,0,0,0.5)">← 3mm BLEED BOUNDARY</text>
+      <rect x="36" y="103" width="125" height="188" fill="none" stroke="rgba(0,160,0,0.2)" stroke-width="0.5" stroke-dasharray="2,4"/>
+      <text x="37" y="112" font-family="monospace" font-size="5" fill="rgba(0,130,0,0.5)">5mm SAFE (front)</text>
+
+      <!-- Score line callout note -->
+      <text x="30" y="350" font-family="monospace" font-size="5.5" fill="#9A520A" opacity="0.8">† Score rules: 0.5pt at 50% board depth. Crease opposite to fold direction (standard for SBS 350gsm).</text>
+
+    </svg>
+  </div>
+
+  <!-- Legend -->
+  <div style="padding:0 15mm 6mm; display:flex; justify-content:center; gap:8mm; flex-wrap:wrap;">
+    <div class="dl-leg"><div class="dl-leg-line" style="background:#CC0000;"></div>Cut line</div>
+    <div class="dl-leg"><div class="dl-leg-line" style="background:#0055CC; border-top:2px dashed #0055CC; background:none;"></div>Crease / fold line</div>
+    <div class="dl-leg"><div class="dl-leg-line" style="background:#E8821A; opacity:.5;"></div>Glue zone</div>
+    <div class="dl-leg"><div class="dl-leg-line" style="background:#C4960A; opacity:.5;"></div>Tuck flap</div>
+    <div class="dl-leg"><div class="dl-leg-line" style="background:rgba(255,0,0,0.3);"></div>Bleed (3mm)</div>
+    <div class="dl-leg"><div class="dl-leg-line" style="background:rgba(0,180,0,0.4);"></div>Safe zone (5mm)</div>
+  </div>
+
+  <div style="padding:0 15mm 8mm;">
+    <div class="pf"><div class="pf-ref">Deli Belly Tea · Masala Chai Carton · Reverse Tuck-End Dieline · Section 02</div><div class="pf-brand">Deli Belly Tea</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 04 — 3D MOCKUP
+═══════════════════════════════ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">03</div><div class="pt">3D Assembled Carton — Mockup Views</div></div>
+    <div class="pn">04 / 06</div>
+  </div>
+  <div class="stitle">Assembled Mockup</div>
+  <div class="mockup-grid">
+    <!-- Front + side 3D view -->
+    <div class="mockup-area">
+      <svg width="210" height="260" viewBox="0 0 210 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="105" cy="248" rx="70" ry="8" fill="rgba(0,0,0,0.15)"/>
+        <!-- 3D Box: Front + Right Side + Top -->
+        <!-- Right side face -->
+        <polygon points="155,45 190,20 190,210 155,235" fill="#5A0A1A"/>
+        <!-- Top face -->
+        <polygon points="20,45 155,45 190,20 55,20" fill="#8A2230"/>
+        <!-- Front face -->
+        <rect x="20" y="45" width="135" height="190" fill="#7A1A2A"/>
+
+        <!-- Front panel design -->
+        <!-- Saffron top band -->
+        <rect x="20" y="45" width="135" height="14" fill="#E8821A"/>
+        <!-- Hindi text -->
+        <text x="87" y="55" font-family="sans-serif" font-size="6" fill="rgba(250,245,236,0.9)" text-anchor="middle">असली मसाला, असली चाय</text>
+
+        <!-- Brand name zone -->
+        <rect x="20" y="59" width="135" height="42" fill="#6A0A1A"/>
+        <text x="87" y="78" font-family="serif" font-size="16" font-weight="bold" fill="#FAF5EC" text-anchor="middle">Deli Belly</text>
+        <text x="87" y="93" font-family="serif" font-size="10" font-style="italic" fill="#E8821A" text-anchor="middle">Tea</text>
+
+        <!-- Divider line -->
+        <line x1="40" y1="101" x2="135" y2="101" stroke="rgba(232,130,26,0.4)" stroke-width="0.5"/>
+
+        <!-- Spice illustration zone -->
+        <rect x="20" y="101" width="135" height="85" fill="#7A1A2A"/>
+        <!-- Star anise mandala -->
+        <circle cx="87" cy="143" r="28" fill="none" stroke="rgba(232,130,26,0.2)" stroke-width="1"/>
+        <circle cx="87" cy="143" r="18" fill="none" stroke="rgba(232,130,26,0.3)" stroke-width="0.8"/>
+        <circle cx="87" cy="143" r="6" fill="#E8821A" opacity="0.6"/>
+        <!-- 8 petals -->
+        <line x1="87" y1="115" x2="87" y2="171" stroke="rgba(232,130,26,0.35)" stroke-width="1"/>
+        <line x1="67" y1="123" x2="107" y2="163" stroke="rgba(232,130,26,0.35)" stroke-width="1"/>
+        <line x1="59" y1="143" x2="115" y2="143" stroke="rgba(232,130,26,0.35)" stroke-width="1"/>
+        <line x1="67" y1="163" x2="107" y2="123" stroke="rgba(232,130,26,0.35)" stroke-width="1"/>
+        <!-- Spice dots -->
+        <circle cx="87" cy="117" r="3" fill="#E8821A" opacity="0.5"/>
+        <circle cx="87" cy="169" r="3" fill="#E8821A" opacity="0.5"/>
+        <circle cx="61" cy="143" r="3" fill="#E8821A" opacity="0.5"/>
+        <circle cx="113" cy="143" r="3" fill="#E8821A" opacity="0.5"/>
+        <!-- Variant text -->
+        <text x="87" y="196" font-family="sans-serif" font-size="7" font-weight="600" fill="rgba(250,245,236,0.7)" text-anchor="middle" letter-spacing="2">MASALA CHAI</text>
+
+        <!-- Bottom saffron band -->
+        <rect x="20" y="186" width="135" height="10" fill="#E8821A" opacity="0.8"/>
+
+        <!-- Weight + bags info -->
+        <rect x="20" y="196" width="135" height="24" fill="#5A0A1A"/>
+        <text x="87" y="207" font-family="monospace" font-size="6" fill="rgba(250,245,236,0.55)" text-anchor="middle">20 TEA BAGS · 40g NET</text>
+        <text x="87" y="216" font-family="monospace" font-size="5.5" fill="rgba(250,245,236,0.35)" text-anchor="middle">7-SPICE BLEND · NO ARTIFICIAL FLAVOURS</text>
+
+        <!-- Bottom tuck -->
+        <rect x="20" y="220" width="135" height="15" fill="#4A0A14"/>
+        <text x="87" y="230" font-family="monospace" font-size="5" fill="rgba(250,245,236,0.25)" text-anchor="middle">BOTTOM TUCK</text>
+
+        <!-- Side panel design -->
+        <polygon points="155,45 190,20 190,210 155,235" fill="#5A0A1A"/>
+        <text x="172" y="128" font-family="monospace" font-size="5.5" fill="rgba(250,245,236,0.35)" text-anchor="middle" transform="rotate(15,172,128)">MASALA CHAI · 40mm</text>
+
+        <!-- Top face design -->
+        <polygon points="20,45 155,45 190,20 55,20" fill="#8A2230"/>
+        <text x="103" y="36" font-family="monospace" font-size="5" fill="rgba(250,245,236,0.35)" text-anchor="middle">TOP TUCK</text>
+
+        <!-- Front panel outline -->
+        <rect x="20" y="45" width="135" height="190" fill="none" stroke="rgba(250,245,236,0.15)" stroke-width="0.5"/>
+      </svg>
+      <div class="mockup-label">Front + Side View</div>
+    </div>
+
+    <!-- Back + side view -->
+    <div class="mockup-area">
+      <svg width="210" height="260" viewBox="0 0 210 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="105" cy="248" rx="70" ry="8" fill="rgba(0,0,0,0.15)"/>
+        <!-- Back face + Left side + Top -->
+        <!-- Left side -->
+        <polygon points="20,45 55,20 55,210 20,235" fill="#4A0A14"/>
+        <!-- Top -->
+        <polygon points="55,20 190,20 190,45 55,45" fill="#8A2230"/>
+        <!-- Back face -->
+        <rect x="55" y="45" width="135" height="190" fill="#6A1A28"/>
+
+        <!-- Back panel design - regulatory zone -->
+        <!-- Top band -->
+        <rect x="55" y="45" width="135" height="10" fill="#C4780A" opacity="0.7"/>
+
+        <!-- Ingredients zone -->
+        <rect x="55" y="55" width="135" height="70" fill="#5A0A1A"/>
+        <text x="122" y="68" font-family="sans-serif" font-size="6" font-weight="600" fill="rgba(250,245,236,0.7)" text-anchor="middle" letter-spacing="1">INGREDIENTS</text>
+        <text x="65" y="80" font-family="sans-serif" font-size="5.5" fill="rgba(250,245,236,0.5)">Black tea, Ginger, Cardamom,</text>
+        <text x="65" y="89" font-family="sans-serif" font-size="5.5" fill="rgba(250,245,236,0.5)">Cinnamon, Clove, Black Pepper,</text>
+        <text x="65" y="98" font-family="sans-serif" font-size="5.5" fill="rgba(250,245,236,0.5)">Star Anise, Turmeric.</text>
+        <text x="122" y="114" font-family="sans-serif" font-size="6" font-weight="600" fill="rgba(250,245,236,0.7)" text-anchor="middle" letter-spacing="1">BREWING GUIDE</text>
+        <text x="65" y="125" font-family="sans-serif" font-size="5.5" fill="rgba(250,245,236,0.45)">Steep 1 bag in boiling water or milk</text>
+        <text x="65" y="133" font-family="sans-serif" font-size="5.5" fill="rgba(250,245,236,0.45)">for 3–5 minutes. Add sugar to taste.</text>
+
+        <!-- Middle regulatory zone -->
+        <rect x="55" y="125" width="135" height="60" fill="#621520"/>
+        <text x="122" y="138" font-family="monospace" font-size="5.5" fill="rgba(250,245,236,0.6)" text-anchor="middle">FSSAI Lic. No. XXXXXXXXXXXXXXXXX</text>
+        <text x="65" y="150" font-family="sans-serif" font-size="5" fill="rgba(250,245,236,0.4)">Mfg by: Deli Belly Foods Pvt. Ltd.</text>
+        <text x="65" y="159" font-family="sans-serif" font-size="5" fill="rgba(250,245,236,0.4)">Pune, Maharashtra — 411001</text>
+        <text x="65" y="168" font-family="sans-serif" font-size="5" fill="rgba(250,245,236,0.4)">Best before: See bottom of pack</text>
+        <text x="65" y="177" font-family="sans-serif" font-size="5" fill="rgba(250,245,236,0.4)">Store in cool, dry place</text>
+
+        <!-- Barcode zone -->
+        <rect x="55" y="185" width="135" height="35" fill="#4A0A14"/>
+        <!-- Barcode simplified -->
+        <rect x="80" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="83" y="190" width="3" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="88" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="91.5" y="190" width="2" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="95.5" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="99" y="190" width="3" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="104" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="107.5" y="190" width="2.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="112" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="115.5" y="190" width="3" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="120.5" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="124" y="190" width="2" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="128" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="131.5" y="190" width="3" height="20" fill="rgba(250,245,236,0.7)"/>
+        <rect x="136.5" y="190" width="1.5" height="20" fill="rgba(250,245,236,0.7)"/>
+        <text x="108" y="217" font-family="monospace" font-size="5.5" fill="rgba(250,245,236,0.5)" text-anchor="middle">8 90123 45678 9</text>
+
+        <!-- MRP -->
+        <text x="150" y="200" font-family="sans-serif" font-size="7" font-weight="bold" fill="rgba(250,245,236,0.6)">MRP</text>
+        <text x="150" y="210" font-family="sans-serif" font-size="9" font-weight="bold" fill="#E8821A">₹399</text>
+
+        <!-- Bottom band -->
+        <rect x="55" y="220" width="135" height="15" fill="#C4780A" opacity="0.5"/>
+        <text x="122" y="230" font-family="monospace" font-size="5" fill="rgba(250,245,236,0.4)" text-anchor="middle">BOTTOM TUCK · INCLUSIVE OF ALL TAXES</text>
+      </svg>
+      <div class="mockup-label">Back + Side View</div>
+    </div>
+  </div>
+
+  <!-- Panel annotations -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:5mm;">
+    <div class="breakdown-card">
+      <div class="bc-title">Front Panel Zones</div>
+      <div class="spec-row"><span class="sk">Top band</span><span class="sv">Saffron · 14mm</span></div>
+      <div class="spec-row"><span class="sk">Brand zone</span><span class="sv">Burgundy · 42mm</span></div>
+      <div class="spec-row"><span class="sk">Illustration</span><span class="sv">Deep burg · 85mm</span></div>
+      <div class="spec-row"><span class="sk">Bottom band</span><span class="sv">Saffron · 10mm</span></div>
+      <div class="spec-row"><span class="sk">Info zone</span><span class="sv">Dark burg · 24mm</span></div>
+    </div>
+    <div class="breakdown-card">
+      <div class="bc-title">Back Panel Zones</div>
+      <div class="spec-row"><span class="sk">Ingredients</span><span class="sv">Top 70mm</span></div>
+      <div class="spec-row"><span class="sk">Regulatory</span><span class="sv">Mid 60mm</span></div>
+      <div class="spec-row"><span class="sk">Barcode + MRP</span><span class="sv">Lower 35mm</span></div>
+      <div class="spec-row"><span class="sk">Min text size</span><span class="sv">6pt (FSSAI req.)</span></div>
+    </div>
+    <div class="breakdown-card">
+      <div class="bc-title">Reverse Tuck Logic</div>
+      <div class="spec-row"><span class="sk">Top front tuck</span><span class="sv">inserts toward BACK</span></div>
+      <div class="spec-row"><span class="sk">Top back tuck</span><span class="sv">inserts toward FRONT</span></div>
+      <div class="spec-row"><span class="sk">Bottom front tuck</span><span class="sv">inserts toward FRONT</span></div>
+      <div class="spec-row"><span class="sk">Bottom back tuck</span><span class="sv">inserts toward BACK</span></div>
+      <div class="spec-row"><span class="sk">Dust flaps</span><span class="sv">fold in first, before tuck</span></div>
+      <div class="spec-row"><span class="sk">Glue flap</span><span class="sv">right edge of Side 2</span></div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Deli Belly Tea · Masala Chai Carton · 3D Assembled Mockup · Section 03</div><div class="pf-brand">Deli Belly Tea</div></div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 05 — COLOR & TYPOGRAPHY
+═══════════════════════════════ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">04</div><div class="pt">Color System & Typography</div></div>
+    <div class="pn">05 / 06</div>
+  </div>
+  <div class="stitle">Design System</div>
+  <div class="ct-grid">
+    <div>
+      <div class="lbl-sm" style="margin-bottom:3mm;">Color Palette</div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="sw-color" style="background:#E8821A;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Spice Saffron</div>
+            <div class="sw-spec">HEX #E8821A<br>CMYK 0/47/88/9<br>Pantone 7578 C<br>RGB 232/130/26</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="sw-color" style="background:#7A1A2A;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Kashmiri Burg</div>
+            <div class="sw-spec">HEX #7A1A2A<br>CMYK 0/78/65/52<br>Pantone 7421 C<br>RGB 122/26/42</div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="sw-color" style="background:#C4960A;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Turmeric Gold</div>
+            <div class="sw-spec">HEX #C4960A<br>CMYK 0/24/95/23<br>Pantone 1245 C<br>RGB 196/150/10</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="sw-color" style="background:#FAF5EC; border:.5px solid #ddd;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Chai Cream</div>
+            <div class="sw-spec">HEX #FAF5EC<br>CMYK 0/1/6/2<br>Pantone 9183 C<br>RGB 250/245/236</div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-row" style="margin-bottom:0;">
+        <div class="swatch">
+          <div class="sw-color" style="background:#1A1008;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Masala Ink</div>
+            <div class="sw-spec">HEX #1A1008<br>CMYK 0/7/67/90<br>Pantone 412 C<br>RGB 26/16/8</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="sw-color" style="background:#1A3A1A;"></div>
+          <div class="sw-info">
+            <div class="sw-name">Cardamom Green</div>
+            <div class="sw-spec">HEX #1A3A1A<br>CMYK 75/33/75/72<br>Pantone 350 C<br>RGB 26/58/26</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--saffron-light); border:1px solid var(--border); border-left:3px solid var(--saffron); padding:4mm 5mm; border-radius:0 3px 3px 0; margin-top:4mm; font-size:7.5pt; line-height:1.65;">
+        <strong>Pantone usage:</strong> Spice Saffron (PMS 7578 C) and Kashmiri Burgundy (PMS 7421 C) are the two spot colors specified for the 4C+2 Pantone offset run. Turmeric Gold and Chai Cream are produced in CMYK. Verify all colors against physical Pantone chips before final approval.
+      </div>
+    </div>
+
+    <div>
+      <div class="lbl-sm" style="margin-bottom:3mm;">Typography System</div>
+      <div class="type-spec">
+        <div style="font-family:'Playfair Display',serif; font-size:26pt; font-weight:900; color:var(--burg); line-height:1; margin-bottom:2mm;">Deli Belly</div>
+        <div style="font-size:7pt; color:var(--muted); line-height:1.6;">Playfair Display · Black 900 · Display / Brand<br>Use: wordmark, panel headlines only · Min 14pt</div>
+      </div>
+      <div class="type-spec">
+        <div style="font-family:'Playfair Display',serif; font-size:14pt; font-weight:400; font-style:italic; color:var(--saffron); margin-bottom:2mm;">Masala Chai</div>
+        <div style="font-size:7pt; color:var(--muted); line-height:1.6;">Playfair Display · Italic 400 · Variant Name<br>Use: product name, subheadings · Min 10pt</div>
+      </div>
+      <div class="type-spec">
+        <div style="font-family:'DM Sans',sans-serif; font-size:9pt; font-weight:400; color:var(--ink); margin-bottom:2mm; line-height:1.6;">Black tea, Ginger, Cardamom, Cinnamon, Clove, Black Pepper, Star Anise, Turmeric.</div>
+        <div style="font-size:7pt; color:var(--muted); line-height:1.6;">DM Sans · Regular 400 · Ingredients & Body<br>Use: all regulatory text, brewing guide · Min 6pt</div>
+      </div>
+      <div class="type-spec" style="margin-bottom:0;">
+        <div style="font-family:'DM Mono',monospace; font-size:8pt; color:var(--muted); margin-bottom:2mm;">FSSAI · MRP · BBE · EAN-13</div>
+        <div style="font-size:7pt; color:var(--muted); line-height:1.6;">DM Mono · Regular 400 · Codes & Specs<br>Use: barcode callouts, batch, regulatory codes</div>
+      </div>
+      <div style="background:var(--burg); color:white; padding:4mm 5mm; border-radius:3px; font-size:7.5pt; line-height:1.65; margin-top:4mm;">
+        <strong style="color:var(--saffron);">FSSAI Compliance note:</strong> All mandatory text (ingredients, allergens, MRP, net weight, FSSAI licence, best before, manufacturer address) must be minimum 1mm x-height on final carton. DM Sans at 6pt on 350gsm board meets this threshold.
+      </div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">Deli Belly Tea · Masala Chai Carton · Color System & Typography · Section 04</div><div class="pf-brand">Deli Belly Tea</div></div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 06 — PRINT SPECS + SIGN-OFF
+═══════════════════════════════ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm">05</div><div class="pt">Print Specifications & Sign-Off</div></div>
+    <div class="pn">06 / 06</div>
+  </div>
+  <div class="stitle">Technical Specifications</div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-title">Carton Dimensions</div>
+      <div class="spec-row"><span class="sk">Style</span><span class="sv">Reverse Tuck-End (RTE)</span></div>
+      <div class="spec-row"><span class="sk">Assembled (W×D×H)</span><span class="sv">65 × 40 × 95mm</span></div>
+      <div class="spec-row"><span class="sk">Flat blank width</span><span class="sv">222mm (incl. 12mm glue flap)</span></div>
+      <div class="spec-row"><span class="sk">Flat blank height</span><span class="sv">135mm (incl. 2× 20mm tuck)</span></div>
+      <div class="spec-row"><span class="sk">Tuck depth</span><span class="sv">20mm top & bottom</span></div>
+      <div class="spec-row"><span class="sk">Glue flap</span><span class="sv">12mm, right edge of Side 2</span></div>
+      <div class="spec-row"><span class="sk">Dust flap</span><span class="sv">Half-depth of side panel</span></div>
+      <div class="spec-row"><span class="sk">Bleed</span><span class="sv">3mm all sides</span></div>
+      <div class="spec-row"><span class="sk">Safe zone</span><span class="sv">5mm inside trim on all panels</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Board & Substrate</div>
+      <div class="spec-row"><span class="sk">Board type</span><span class="sv">SBS (Solid Bleached Sulphate)</span></div>
+      <div class="spec-row"><span class="sk">Board weight</span><span class="sv">350gsm</span></div>
+      <div class="spec-row"><span class="sk">Caliper</span><span class="sv">0.40mm (±0.02mm tolerance)</span></div>
+      <div class="spec-row"><span class="sk">Grain direction</span><span class="sv">Parallel to height (vertical)</span></div>
+      <div class="spec-row"><span class="sk">Food safe</span><span class="sv">Yes — SBS food-contact certified</span></div>
+      <div class="spec-row"><span class="sk">Moisture barrier</span><span class="sv">PE coating on inner surface</span></div>
+      <div class="spec-row"><span class="sk">Crush strength</span><span class="sv">Min. 200N (BCT)</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Print & Finishing</div>
+      <div class="spec-row"><span class="sk">Print process</span><span class="sv">Offset litho, 4C + 2 Pantone</span></div>
+      <div class="spec-row"><span class="sk">Spot colors</span><span class="sv">PMS 7578 C + PMS 7421 C</span></div>
+      <div class="spec-row"><span class="sk">Color mode</span><span class="sv">CMYK + 2 Pantone</span></div>
+      <div class="spec-row"><span class="sk">Max ink density</span><span class="sv">300% TAC</span></div>
+      <div class="spec-row"><span class="sk">Outer finish</span><span class="sv">Soft-touch matte laminate</span></div>
+      <div class="spec-row"><span class="sk">Spot UV</span><span class="sv">"Deli Belly Tea" wordmark only</span></div>
+      <div class="spec-row"><span class="sk">Emboss</span><span class="sv">Brand wordmark — blind emboss</span></div>
+      <div class="spec-row"><span class="sk">PDF export</span><span class="sv">PDF/X-1a · ISO Coated v2</span></div>
+      <div class="spec-row"><span class="sk">Resolution</span><span class="sv">300 dpi minimum</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Regulatory & Compliance</div>
+      <div class="spec-row"><span class="sk">Standard</span><span class="sv">FSSAI · Food Safety Act 2006</span></div>
+      <div class="spec-row"><span class="sk">Barcode</span><span class="sv">EAN-13 · SC2 (80% min.)</span></div>
+      <div class="spec-row"><span class="sk">MRP declaration</span><span class="sv">Mandatory · inclusive of taxes</span></div>
+      <div class="spec-row"><span class="sk">Min text size</span><span class="sv">6pt · 1mm x-height minimum</span></div>
+      <div class="spec-row"><span class="sk">Vegetarian mark</span><span class="sv">Green dot · mandatory</span></div>
+      <div class="spec-row"><span class="sk">Net weight</span><span class="sv">40g declared on front panel</span></div>
+      <div class="spec-row"><span class="sk">Country of origin</span><span class="sv">Made in India</span></div>
+      <div class="spec-row"><span class="sk">Shelf life</span><span class="sv">24 months from manufacture</span></div>
+    </div>
+  </div>
+
+  <div style="background:var(--saffron-light); border:1px solid var(--border); border-left:3px solid var(--saffron); padding:4.5mm 5.5mm; border-radius:0 3px 3px 0; margin-top:5mm; font-size:7.5pt; line-height:1.7;">
+    <strong>Die-cutting note:</strong> Crease rules on reverse tuck-end cartons must be set opposite to the fold direction. Front panel tuck creases require a 0.5pt scoring rule at 50% depth on 350gsm board. Glue flap (12mm) is positioned at the right edge of Side Panel 2 — hot melt adhesive applied to the inner 10mm of the flap, 2mm clearance at top and bottom edges to prevent bleed-through. Dust flaps fold in first before tuck inserts. Recommend production sample approval before full run.
+  </div>
+
+  <div class="signoff">
+    <div>
+      <div class="so-brand">Deli Belly Tea</div>
+      <div class="so-sub">Masala Chai · Reverse Tuck-End Carton · Design System v1.0 · 2025</div>
+    </div>
+    <div class="so-r">Adobe Illustrator CC · Esko ArtPro+<br>Adobe Dimension · Pantone Connect<br>06 / 06 · CLIENT REVIEW DRAFT</div>
+  </div>
+
+  <div class="pf" style="margin-top:4mm;"><div class="pf-ref">Deli Belly Tea · Masala Chai Carton · Print Specifications & Sign-Off · Section 05</div><div class="pf-brand">Deli Belly Tea</div></div>
+</div>
+
+</body>
+</html>

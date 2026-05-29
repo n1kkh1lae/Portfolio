@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AN — Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f5f2ec;
+    --muted: #8a8478;
+    --accent: #b8460a;
+    --line: #d6d0c4;
+    --hover-bg: #ede9e0;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Header */
+  header {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .header-left {}
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .header-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .project-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  /* Intro */
+  .intro {
+    padding: 28px 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  /* Projects list */
+  .projects {
+    padding: 48px 0 0;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .project-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-item {
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .project-item:nth-child(1) { animation-delay: 0.3s; }
+  .project-item:nth-child(2) { animation-delay: 0.4s; }
+  .project-item:nth-child(3) { animation-delay: 0.5s; }
+  .project-item:nth-child(4) { animation-delay: 0.6s; }
+  .project-item:nth-child(5) { animation-delay: 0.7s; }
+
+  .project-link {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease, padding 0.2s ease;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0 -8px;
+  }
+
+  .project-link:hover {
+    background: var(--hover-bg);
+  }
+
+  .project-link:hover .project-arrow {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+
+  .project-link:hover .project-num {
+    color: var(--accent);
+  }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+    letter-spacing: 0.05em;
+  }
+
+  .project-info {}
+
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .project-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 3px 8px;
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+
+  .project-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.4;
+  }
+
+  .project-arrow svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px 0 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    animation: fadeUp 0.7s 0.8s ease both;
+  }
+
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 0 20px; }
+    header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .header-right { text-align: left; }
+    .project-link { grid-template-columns: 36px 1fr auto; gap: 14px; }
+    .project-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="header-left">
+      <h1 class="name">Design <em>Portfolio</em></h1>
+      <p class="subtitle">Branding &amp; Packaging — Selected Works</p>
+    </div>
+    <div class="header-right">
+      <div class="header-label">Projects</div>
+      <div class="project-count">05</div>
+    </div>
+  </header>
+
+  <main>
+    <p class="intro">Brand identity, packaging systems, and label design — <br>each project built as a live interactive document.</p>
+
+    <div class="projects">
+      <div class="section-label">Select a project to view</div>
+      <ul class="project-list">
+
+        <li class="project-item">
+          <a class="project-link" href="BRASERO_RevisionWorkflow_R4.html" target="_blank">
+            <span class="project-num">01</span>
+            <div class="project-info">
+              <div class="project-name">Brasero</div>
+              <div class="project-desc">Design Revision Workflow</div>
+            </div>
+            <div class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a class="project-link" href="FincaDorada_MultilingualVariants_R2__1_.html" target="_blank">
+            <span class="project-num">02</span>
+            <div class="project-info">
+              <div class="project-name">Finca Dorada</div>
+              <div class="project-desc">Multilingual Label Variants</div>
+            </div>
+            <div class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a class="project-link" href="BIRA91_DE_StyleGuide__2_.html" target="_blank">
+            <span class="project-num">03</span>
+            <div class="project-info">
+              <div class="project-name">Bira 91 DE</div>
+              <div class="project-desc">Brand Style Guide</div>
+            </div>
+            <div class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a class="project-link" href="NARO_PetFood_LabelSystem.html" target="_blank">
+            <span class="project-num">04</span>
+            <div class="project-info">
+              <div class="project-name">NARO</div>
+              <div class="project-desc">Premium Dog Food Label System</div>
+            </div>
+            <div class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </li>
+
+        <li class="project-item">
+          <a class="project-link" href="DeliBelly_Tea_MasalaChai_Carton.html" target="_blank">
+            <span class="project-num">05</span>
+            <div class="project-info">
+              <div class="project-name">Deli Belly Tea</div>
+              <div class="project-desc">Masala Chai Folding Carton</div>
+            </div>
+            <div class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-note">All files open in new tab</span>
+    <div class="footer-dot"></div>
+    <span class="footer-note">Branding &amp; Packaging Design</span>
+  </footer>
+
+</div>
+</body>
+</html>

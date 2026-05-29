@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NARO — Premium Dog Food Label System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --amber:#C4780A; --amber-light:#F5E6CC; --amber-dark:#7A4A06;
+  --teal:#0A6B7A; --teal-light:#C8E8ED; --teal-dark:#064850;
+  --burg:#7A1A2A; --burg-light:#EDD0D5; --burg-dark:#4A0A14;
+  --ink:#1A1A1A; --muted:#6B6B6B; --border:#E0DCCC; --bg:#FAFAF7;
+  --cream:#F5F2EA;
+}
+body { font-family:'Jost',sans-serif; background:var(--bg); color:var(--ink); font-size:10pt; }
+.page { width:210mm; min-height:297mm; margin:0 auto 2mm; background:var(--bg); position:relative; overflow:hidden; page-break-after:always; display:flex; flex-direction:column; }
+.page:last-child { page-break-after:avoid !important; break-after:avoid !important; }
+@media print { body{margin:0} .page{margin:0; page-break-after:always; box-shadow:none;} .page:last-child{page-break-after:avoid !important;} @page{size:A4 portrait; margin:0;} }
+
+/* SHARED */
+.lbl-sm { font-size:7pt; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.mono { font-family:'DM Mono',monospace; }
+.int { padding:14mm 16mm 12mm; flex:1; display:flex; flex-direction:column; }
+.ph { display:flex; justify-content:space-between; align-items:center; padding-bottom:5mm; border-bottom:1px solid var(--border); margin-bottom:9mm; }
+.ph-l { display:flex; align-items:center; gap:5mm; }
+.pm { font-family:'Cormorant Garamond',serif; font-size:9pt; font-weight:700; color:white; padding:1.5mm 4mm; border-radius:2px; }
+.pt { font-size:8pt; font-weight:500; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+.pn { font-family:'DM Mono',monospace; font-size:7.5pt; color:var(--muted); }
+.pf { margin-top:auto; padding-top:5mm; border-top:.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.pf-ref { font-family:'DM Mono',monospace; font-size:6.5pt; color:var(--muted); line-height:1.6; }
+.pf-brand { font-family:'Cormorant Garamond',serif; font-size:11pt; font-weight:700; letter-spacing:.08em; }
+.stitle { font-family:'Cormorant Garamond',serif; font-size:26pt; font-weight:700; color:var(--ink); line-height:1; margin-bottom:6mm; }
+.spec-row { display:flex; justify-content:space-between; align-items:baseline; padding:2.5mm 0; border-bottom:.5px solid #EEEBE0; }
+.spec-row:last-child { border-bottom:none; }
+.sk { font-size:7.5pt; color:var(--muted); }
+.sv { font-family:'DM Mono',monospace; font-size:7.5pt; font-weight:500; }
+
+/* ═══ PAGE 01 COVER ═══ */
+.cover { background:var(--ink); min-height:297mm; padding:16mm; display:flex; flex-direction:column; justify-content:space-between; }
+.cover-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.cover-wordmark { font-family:'Cormorant Garamond',serif; font-size:13pt; font-weight:600; color:rgba(255,255,255,.5); letter-spacing:.15em; }
+.cover-doc-ref { font-family:'DM Mono',monospace; font-size:7pt; color:rgba(255,255,255,.25); letter-spacing:.1em; text-align:right; line-height:1.7; }
+.cover-center { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:10mm 0; }
+.cover-brand { font-family:'Cormorant Garamond',serif; font-size:88pt; font-weight:700; color:white; line-height:.85; letter-spacing:-.02em; }
+.cover-tagline { font-size:9pt; font-weight:300; color:rgba(255,255,255,.45); letter-spacing:.25em; text-transform:uppercase; margin-top:5mm; }
+.sku-strip { display:flex; gap:0; margin-top:12mm; width:100%; border-radius:3px; overflow:hidden; }
+.sku-chip { flex:1; padding:5mm 4mm; display:flex; flex-direction:column; align-items:center; gap:2mm; }
+.sku-chip-num { font-family:'DM Mono',monospace; font-size:7pt; letter-spacing:.15em; opacity:.7; }
+.sku-chip-name { font-family:'Cormorant Garamond',serif; font-size:13pt; font-weight:700; }
+.sku-chip-sub { font-size:7pt; font-weight:400; opacity:.7; letter-spacing:.08em; }
+.chip-amber { background:var(--amber); color:white; }
+.chip-teal { background:var(--teal); color:white; }
+.chip-burg { background:var(--burg); color:white; }
+.cover-footer { display:flex; justify-content:space-between; align-items:flex-end; border-top:.5px solid rgba(255,255,255,.1); padding-top:5mm; }
+.cft-l { font-size:7.5pt; color:rgba(255,255,255,.3); line-height:1.7; }
+.cft-r { font-family:'DM Mono',monospace; font-size:7pt; color:rgba(255,255,255,.2); text-align:right; line-height:1.7; }
+
+/* ═══ PAGE 02 SYSTEM OVERVIEW ═══ */
+.overview-intro { font-size:9pt; line-height:1.75; color:var(--ink); margin-bottom:8mm; max-width:160mm; }
+.sku-overview-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; margin-bottom:7mm; }
+.sku-card { border-radius:4px; overflow:hidden; border:1px solid var(--border); }
+.sku-card-top { padding:6mm 5mm; display:flex; flex-direction:column; align-items:center; text-align:center; gap:2.5mm; min-height:55mm; justify-content:center; }
+.sku-card-num { font-family:'DM Mono',monospace; font-size:7pt; letter-spacing:.15em; opacity:.75; }
+.sku-card-name { font-family:'Cormorant Garamond',serif; font-size:20pt; font-weight:700; line-height:1; }
+.sku-card-protein { font-size:8pt; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.sku-card-badge { font-size:6.5pt; font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:rgba(255,255,255,.2); padding:1.5mm 3mm; border-radius:2px; margin-top:1mm; }
+.sku-card-icon { font-size:22pt; opacity:.85; }
+.sku-card-bottom { background:white; padding:4mm 5mm; }
+.sku-card-desc { font-size:7.5pt; line-height:1.6; color:var(--muted); }
+.brand-arch { background:var(--cream); border:1px solid var(--border); border-radius:3px; padding:5.5mm 6mm; }
+.brand-arch-title { font-size:7.5pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3.5mm; }
+.brand-arch-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; }
+.ba-item-label { font-size:7pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1.5mm; }
+.ba-item-val { font-size:8.5pt; line-height:1.55; color:var(--ink); }
+
+/* ═══ SKU LABEL PAGES (03,04,05) ═══ */
+.sku-page-header-bar { height:8mm; width:100%; display:flex; align-items:center; justify-content:space-between; padding:0 16mm; }
+.sku-page-header-bar-text { font-family:'DM Mono',monospace; font-size:7pt; letter-spacing:.12em; color:white; }
+.sku-content { flex:1; display:grid; grid-template-columns:85mm 1fr; gap:8mm; padding:10mm 16mm 12mm; }
+.label-mockup-area { display:flex; flex-direction:column; gap:5mm; }
+.label-mockup { border-radius:5px; overflow:hidden; display:flex; flex-direction:column; position:relative; }
+.label-top { padding:7mm 6mm 5mm; display:flex; flex-direction:column; align-items:center; text-align:center; gap:2mm; }
+.label-brand { font-family:'Cormorant Garamond',serif; font-size:30pt; font-weight:700; color:white; letter-spacing:-.01em; line-height:1; }
+.label-sku-num { font-family:'DM Mono',monospace; font-size:7pt; letter-spacing:.2em; color:rgba(255,255,255,.6); }
+.label-protein { font-family:'Cormorant Garamond',serif; font-size:16pt; font-weight:600; font-style:italic; color:white; }
+.label-deco-line { width:25mm; height:.5px; background:rgba(255,255,255,.3); }
+.label-format { font-size:7.5pt; font-weight:500; letter-spacing:.1em; color:rgba(255,255,255,.7); text-transform:uppercase; }
+.label-icon-area { font-size:28pt; padding:3mm 0; opacity:.9; }
+.label-weight { font-family:'DM Mono',monospace; font-size:9pt; color:rgba(255,255,255,.8); }
+.label-bottom { background:rgba(0,0,0,.25); padding:4mm 6mm; display:flex; justify-content:space-between; align-items:center; }
+.label-bottom-claim { font-size:7pt; color:rgba(255,255,255,.7); line-height:1.5; }
+.label-bottom-weight { font-family:'DM Mono',monospace; font-size:8pt; color:white; }
+.label-badge { position:absolute; top:5mm; right:5mm; background:white; border-radius:50%; width:10mm; height:10mm; display:flex; align-items:center; justify-content:center; font-size:5.5pt; font-weight:700; text-align:center; line-height:1.2; }
+.label-back { background:white; border:1px solid var(--border); border-radius:5px; padding:5mm; }
+.lb-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3mm; padding-bottom:2mm; border-bottom:1px solid var(--border); }
+.lb-ingredients { font-size:6.5pt; line-height:1.65; color:var(--ink); margin-bottom:3mm; }
+.lb-ingredients strong { font-weight:600; }
+.lb-nutrition { width:100%; border-collapse:collapse; font-size:6.5pt; margin-bottom:3mm; }
+.lb-nutrition th { background:var(--ink); color:white; padding:1.5mm 2mm; text-align:left; font-weight:600; font-size:6pt; letter-spacing:.05em; }
+.lb-nutrition td { padding:1.5mm 2mm; border-bottom:.5px solid #EEEBE0; }
+.lb-nutrition tr:last-child td { border-bottom:none; }
+.lb-legal { font-size:6pt; color:var(--muted); line-height:1.55; }
+.right-col { display:flex; flex-direction:column; gap:5mm; }
+.breakdown-card { border:1px solid var(--border); border-radius:3px; padding:5mm; }
+.bc-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4mm; padding-bottom:2.5mm; border-bottom:1px solid var(--border); }
+.color-swatch-row { display:flex; gap:3mm; margin-bottom:4mm; }
+.mini-swatch { flex:1; border-radius:3px; overflow:hidden; border:1px solid var(--border); }
+.ms-color { height:10mm; }
+.ms-info { padding:2mm; background:white; }
+.ms-name { font-size:6.5pt; font-weight:600; margin-bottom:.5mm; }
+.ms-code { font-family:'DM Mono',monospace; font-size:5.5pt; color:var(--muted); line-height:1.6; }
+.type-specimen-mini { margin-bottom:3mm; }
+.tsm-font { font-family:'Cormorant Garamond',serif; font-size:14pt; font-weight:700; line-height:1; margin-bottom:1.5mm; }
+.tsm-meta { font-size:7pt; color:var(--muted); line-height:1.5; }
+.claim-badges { display:flex; flex-wrap:wrap; gap:2mm; margin-top:2mm; }
+.claim-badge { font-size:6.5pt; font-weight:600; letter-spacing:.08em; padding:1.5mm 3mm; border-radius:2px; text-transform:uppercase; }
+.time-block { background:var(--cream); border:1px solid var(--border); border-radius:3px; padding:4mm 5mm; }
+.tb-title { font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:3mm; }
+.tb-row { display:flex; justify-content:space-between; padding:1.5mm 0; border-bottom:.5px solid #EEEBE0; font-size:7.5pt; }
+.tb-row:last-child { border-bottom:none; }
+.tb-val { font-family:'DM Mono',monospace; font-weight:500; }
+
+/* ═══ PAGE 06 PRINT SPECS ═══ */
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.spec-card { border:1px solid var(--border); border-radius:3px; padding:5.5mm 6mm; }
+.sc-title { font-size:7.5pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4mm; padding-bottom:2.5mm; border-bottom:1px solid var(--border); }
+.dieline-ref { background:var(--ink); border-radius:3px; padding:7mm; display:flex; align-items:center; justify-content:center; margin-top:6mm; position:relative; }
+.dieline-label-shape { width:55mm; height:75mm; border:1.5px solid rgba(255,255,255,.5); border-radius:4mm; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2mm; }
+.dl-dim-h { position:absolute; bottom:-6mm; left:50%; transform:translateX(-50%); font-family:'DM Mono',monospace; font-size:6pt; color:rgba(255,255,255,.5); display:flex; align-items:center; gap:1mm; }
+.dl-dim-v { position:absolute; right:-14mm; top:50%; transform:translateY(-50%) rotate(90deg); font-family:'DM Mono',monospace; font-size:6pt; color:rgba(255,255,255,.5); display:flex; align-items:center; gap:1mm; }
+.dl-bleed { position:absolute; inset:-3mm; border:1px dashed rgba(255,100,100,.4); border-radius:5mm; }
+.dl-safe { position:absolute; inset:4mm; border:1px dashed rgba(100,255,100,.25); border-radius:2mm; }
+.dl-inner-text { font-family:'Cormorant Garamond',serif; font-size:14pt; font-weight:700; color:rgba(255,255,255,.3); }
+.dl-legend { position:absolute; right:8mm; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:3mm; }
+.dl-leg-item { display:flex; align-items:center; gap:2mm; font-size:6.5pt; color:rgba(255,255,255,.5); font-family:'DM Mono',monospace; }
+.dl-leg-dot { width:8mm; height:1px; }
+.signoff-bar { background:var(--ink); padding:5.5mm 6mm; border-radius:3px; display:flex; justify-content:space-between; align-items:center; margin-top:5mm; }
+.sb-brand { font-family:'Cormorant Garamond',serif; font-size:16pt; font-weight:700; color:white; letter-spacing:.05em; }
+.sb-sub { font-size:7pt; color:rgba(255,255,255,.4); margin-top:1mm; font-family:'DM Mono',monospace; }
+.sb-r { font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(255,255,255,.3); text-align:right; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 01 COVER ═══ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-wordmark">NARO</div>
+    <div class="cover-doc-ref">LABEL DESIGN SYSTEM<br>MULTI-SKU · 3 VARIANTS<br>CLIENT REVIEW DRAFT · 2025</div>
+  </div>
+  <div class="cover-center">
+    <div style="font-size:8pt; font-weight:300; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:4mm;">Premium Dog Nutrition</div>
+    <div class="cover-brand">NARO</div>
+    <div class="cover-tagline">Nourish. Naturally.</div>
+    <div style="width:20mm; height:.5px; background:rgba(255,255,255,.15); margin:6mm auto;"></div>
+    <div style="font-size:8pt; color:rgba(255,255,255,.3); line-height:1.7; max-width:90mm; text-align:center;">A three-variant label system for premium dry dog food. Protein-led architecture. Distinct colour identity per SKU. Unified brand structure across all formats.</div>
+    <div class="sku-strip">
+      <div class="sku-chip chip-amber">
+        <div class="sku-chip-num">SKU 01</div>
+        <div class="sku-chip-name">Chicken</div>
+        <div class="sku-chip-sub">Everyday Premium</div>
+      </div>
+      <div class="sku-chip chip-teal">
+        <div class="sku-chip-num">SKU 02</div>
+        <div class="sku-chip-name">Salmon</div>
+        <div class="sku-chip-sub">Omega-Rich</div>
+      </div>
+      <div class="sku-chip chip-burg">
+        <div class="sku-chip-num">SKU 03</div>
+        <div class="sku-chip-name">Lamb</div>
+        <div class="sku-chip-sub">Sensitive Care</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div class="cft-l">Prepared by: Brand Packaging Studio<br>Tools: Adobe Illustrator CC · Photoshop CC · Pantone Connect · Esko ArtPro+<br>Project duration: 12 working days (4 days per SKU)</div>
+    <div class="cft-r">NARO Pet Nutrition · Label System v1.0<br>Confidential — Client Review Only<br>01 / 06</div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 02 SYSTEM OVERVIEW ═══ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm" style="background:var(--ink);">01</div><div class="pt">Brand Architecture & SKU Overview</div></div>
+    <div class="pn">02 / 06</div>
+  </div>
+  <div class="stitle">Label System</div>
+  <div class="overview-intro">NARO's label system is built on a single principle: the protein drives everything. Each SKU has its own dominant color identity, hero ingredient illustration zone, and benefit claim — but shares the same structural grid, typeface family, and information hierarchy. A shopper should be able to identify NARO from 3 metres and distinguish the variant from 1 metre.</div>
+  <div class="sku-overview-grid">
+    <div class="sku-card">
+      <div class="sku-card-top" style="background:var(--amber);">
+        <div class="sku-card-num" style="color:rgba(255,255,255,.7);">SKU 01</div>
+        <div class="sku-card-icon">🍗</div>
+        <div class="sku-card-name" style="color:white;">Chicken</div>
+        <div class="sku-card-protein" style="color:rgba(255,255,255,.85);">Free-Range Chicken</div>
+        <div class="sku-card-badge" style="color:white;">Everyday Premium</div>
+      </div>
+      <div class="sku-card-bottom">
+        <div class="sku-card-desc">High-protein formula for active adult dogs. 42% real chicken, no artificial preservatives. Lead SKU for retail entry. Warm amber palette signals energy and approachability.</div>
+      </div>
+    </div>
+    <div class="sku-card">
+      <div class="sku-card-top" style="background:var(--teal);">
+        <div class="sku-card-num" style="color:rgba(255,255,255,.7);">SKU 02</div>
+        <div class="sku-card-icon">🐟</div>
+        <div class="sku-card-name" style="color:white;">Salmon</div>
+        <div class="sku-card-protein" style="color:rgba(255,255,255,.85);">Wild Atlantic Salmon</div>
+        <div class="sku-card-badge" style="color:white;">Omega-Rich · Coat Health</div>
+      </div>
+      <div class="sku-card-bottom">
+        <div class="sku-card-desc">Omega-3 &amp; 6 enriched formula for coat health and cognitive support. 38% wild salmon. Deep teal palette signals freshness, ocean provenance, and functional premium.</div>
+      </div>
+    </div>
+    <div class="sku-card">
+      <div class="sku-card-top" style="background:var(--burg);">
+        <div class="sku-card-num" style="color:rgba(255,255,255,.7);">SKU 03</div>
+        <div class="sku-card-icon">🥩</div>
+        <div class="sku-card-name" style="color:white;">Lamb</div>
+        <div class="sku-card-protein" style="color:rgba(255,255,255,.85);">Grass-Fed Lamb</div>
+        <div class="sku-card-badge" style="color:white;">Sensitive Digestion</div>
+      </div>
+      <div class="sku-card-bottom">
+        <div class="sku-card-desc">Single-protein formula for dogs with sensitive digestion. 40% grass-fed lamb, no grains. Deep burgundy palette signals care, gentleness, and clinical authority.</div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-arch">
+    <div class="brand-arch-title">Shared Brand Architecture — Constant Across All SKUs</div>
+    <div class="brand-arch-grid">
+      <div>
+        <div class="ba-item-label">Typography</div>
+        <div class="ba-item-val">Cormorant Garamond — display &amp; brand wordmark<br>Jost — body, claims, regulatory<br>DM Mono — specs, batch codes, weights</div>
+      </div>
+      <div>
+        <div class="ba-item-label">Label Format</div>
+        <div class="ba-item-val">Wraparound label: 280mm × 120mm<br>Front panel: 95mm × 120mm<br>Back panel: 130mm × 120mm<br>Substrate: Uncoated white 90gsm<br><span style="color:#6B6B6B; font-size:7.5pt;">System extends to stand-up pouches and folding cartons — same grid and type hierarchy applies across formats.</span></div>
+      </div>
+      <div>
+        <div class="ba-item-label">Print Specs</div>
+        <div class="ba-item-val">Offset litho, 5-color (CMYK + 1 Pantone)<br>Finish: Soft-touch matte laminate<br>Spot UV: NARO wordmark only<br>Bleed: 3mm · Safe zone: 5mm</div>
+      </div>
+    </div>
+  </div>
+  <div class="pf"><div class="pf-ref">NARO Pet Nutrition · Label Design System · Brand Architecture · Section 01</div><div class="pf-brand">NARO</div></div>
+</div>
+
+<!-- ═══ PAGE 03 SKU 01 CHICKEN ═══ -->
+<div class="page" style="background:var(--bg);">
+  <div class="sku-page-header-bar" style="background:var(--amber);">
+    <div class="sku-page-header-bar-text">SKU 01 — CHICKEN · FREE-RANGE · EVERYDAY PREMIUM</div>
+    <div class="sku-page-header-bar-text">03 / 06</div>
+  </div>
+  <div class="sku-content">
+    <div class="label-mockup-area">
+      <!-- Front label -->
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm;">Front Panel</div>
+      <div class="label-mockup" style="background:var(--amber);">
+        <div class="label-badge" style="color:var(--amber);">GRAIN<br>FREE</div>
+        <div class="label-top">
+          <div class="label-sku-num">SKU 01 · CHICKEN</div>
+          <div class="label-brand">NARO</div>
+          <div class="label-deco-line"></div>
+          <div class="label-protein">Free-Range Chicken</div>
+          <div class="label-icon-area">🍗</div>
+          <div style="font-size:7.5pt; color:rgba(255,255,255,.65); letter-spacing:.08em;">COMPLETE ADULT DOG FOOD</div>
+          <div class="label-weight">2 kg · e</div>
+        </div>
+        <div class="label-bottom">
+          <div class="label-bottom-claim">42% Real Chicken<br>No Artificial Additives</div>
+          <div style="text-align:right; font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(255,255,255,.6);">Batch: CH-2025<br>BBE: See base</div>
+        </div>
+      </div>
+      <!-- Back label -->
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm; margin-top:2mm;">Back Panel</div>
+      <div class="label-back">
+        <div class="lb-title">Ingredients & Nutrition</div>
+        <div class="lb-ingredients">
+          <strong>Ingredients:</strong> Dried Chicken (42%), Chicken Fat (8%), Sweet Potato (12%), Peas (10%), Salmon Oil (3%), Dried Egg, Flaxseed, Chicory Root (Inulin 0.5%), Vitamins &amp; Minerals. <strong>Allergens: Egg.</strong>
+        </div>
+        <table class="lb-nutrition">
+          <tr><th>Analytical Constituents</th><th>Per 100g</th></tr>
+          <tr><td>Crude Protein</td><td>28.0%</td></tr>
+          <tr><td>Crude Fat</td><td>14.0%</td></tr>
+          <tr><td>Crude Fibre</td><td>3.0%</td></tr>
+          <tr><td>Crude Ash</td><td>7.0%</td></tr>
+          <tr><td>Moisture</td><td>9.0%</td></tr>
+          <tr><td>Metabolisable Energy</td><td>356 kcal</td></tr>
+        </table>
+        <div class="lb-legal">Complete pet food for adult dogs. Feed daily alongside fresh water. Store in cool, dry conditions. Produced in a facility that also handles fish and egg products. NARO Pet Nutrition · naro-pets.com</div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="breakdown-card">
+        <div class="bc-title">Color System — SKU 01</div>
+        <div class="color-swatch-row">
+          <div class="mini-swatch"><div class="ms-color" style="background:#C4780A;"></div><div class="ms-info"><div class="ms-name">Primary Amber</div><div class="ms-code">PMS 7560 C<br>CMYK 0/42/93/13<br>#C4780A</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#7A4A06;"></div><div class="ms-info"><div class="ms-name">Dark Amber</div><div class="ms-code">PMS 7526 C<br>CMYK 0/40/95/52<br>#7A4A06</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#F5E6CC;"></div><div class="ms-info"><div class="ms-name">Amber Cream</div><div class="ms-code">PMS 9183 C<br>CMYK 0/6/17/4<br>#F5E6CC</div></div></div>
+        </div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Typography Specimen</div>
+        <div class="type-specimen-mini">
+          <div class="tsm-font" style="color:var(--amber);">NARO</div>
+          <div class="tsm-meta">Cormorant Garamond · 700 Bold · Display<br>Tracking: -20 · Leading: 0.9</div>
+        </div>
+        <div style="font-family:'Jost',sans-serif; font-size:9pt; font-weight:500; margin-bottom:1.5mm; color:var(--ink);">Free-Range Chicken</div>
+        <div class="tsm-meta">Jost · 500 Medium · Protein Name · 9pt</div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Health Claims</div>
+        <div class="claim-badges">
+          <div class="claim-badge" style="background:var(--amber-light); color:var(--amber-dark);">42% Chicken</div>
+          <div class="claim-badge" style="background:var(--amber-light); color:var(--amber-dark);">Grain Free</div>
+          <div class="claim-badge" style="background:var(--amber-light); color:var(--amber-dark);">No Additives</div>
+          <div class="claim-badge" style="background:var(--amber-light); color:var(--amber-dark);">High Protein</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="tb-title">Production Record — SKU 01</div>
+        <div class="tb-row"><span>Briefing & concept</span><span class="tb-val mono">Day 1</span></div>
+        <div class="tb-row"><span>Illustration & photography</span><span class="tb-val mono">Day 2</span></div>
+        <div class="tb-row"><span>Artwork build (AI)</span><span class="tb-val mono">Day 3</span></div>
+        <div class="tb-row"><span>Proof & amends</span><span class="tb-val mono">Day 4</span></div>
+        <div class="tb-row"><span>Tool</span><span class="tb-val mono">Illustrator CC · ArtPro+</span></div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Format Specifications</div>
+        <div class="spec-row"><span class="sk">Label type</span><span class="sv">Wraparound</span></div>
+        <div class="spec-row"><span class="sk">Total size</span><span class="sv">280 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Front panel</span><span class="sv">95 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Pantone</span><span class="sv">PMS 7560 C</span></div>
+        <div class="spec-row"><span class="sk">Finish</span><span class="sv">Soft-touch matte</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 16mm 10mm;">
+    <div class="pf"><div class="pf-ref">NARO Pet Nutrition · Label Design System · SKU 01 Chicken · Section 02</div><div class="pf-brand" style="color:var(--amber);">NARO</div></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 04 SKU 02 SALMON ═══ -->
+<div class="page" style="background:var(--bg);">
+  <div class="sku-page-header-bar" style="background:var(--teal);">
+    <div class="sku-page-header-bar-text">SKU 02 — SALMON · WILD ATLANTIC · OMEGA-RICH</div>
+    <div class="sku-page-header-bar-text">04 / 06</div>
+  </div>
+  <div class="sku-content">
+    <div class="label-mockup-area">
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm;">Front Panel</div>
+      <div class="label-mockup" style="background:var(--teal);">
+        <div class="label-badge" style="color:var(--teal);">OMEGA<br>3 &amp; 6</div>
+        <div class="label-top">
+          <div class="label-sku-num">SKU 02 · SALMON</div>
+          <div class="label-brand">NARO</div>
+          <div class="label-deco-line"></div>
+          <div class="label-protein">Wild Atlantic Salmon</div>
+          <div class="label-icon-area">🐟</div>
+          <div style="font-size:7.5pt; color:rgba(255,255,255,.65); letter-spacing:.08em;">COMPLETE ADULT DOG FOOD</div>
+          <div class="label-weight">2 kg · e</div>
+        </div>
+        <div class="label-bottom">
+          <div class="label-bottom-claim">38% Wild Salmon<br>Coat &amp; Cognitive Support</div>
+          <div style="text-align:right; font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(255,255,255,.6);">Batch: SA-2025<br>BBE: See base</div>
+        </div>
+      </div>
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm; margin-top:2mm;">Back Panel</div>
+      <div class="label-back">
+        <div class="lb-title">Ingredients & Nutrition</div>
+        <div class="lb-ingredients">
+          <strong>Ingredients:</strong> Dried Salmon (38%), Salmon Oil (10%), Sweet Potato (14%), Lentils (8%), Dried Herring (5%), Flaxseed (3%), Spirulina (1%), Chicory Root (Inulin 0.5%), Vitamins &amp; Minerals. <strong>Allergens: Fish.</strong>
+        </div>
+        <table class="lb-nutrition">
+          <tr><th>Analytical Constituents</th><th>Per 100g</th></tr>
+          <tr><td>Crude Protein</td><td>26.0%</td></tr>
+          <tr><td>Crude Fat</td><td>16.0%</td></tr>
+          <tr><td>Crude Fibre</td><td>2.5%</td></tr>
+          <tr><td>Crude Ash</td><td>6.5%</td></tr>
+          <tr><td>Moisture</td><td>9.0%</td></tr>
+          <tr><td>Metabolisable Energy</td><td>362 kcal</td></tr>
+        </table>
+        <div class="lb-legal">Complete pet food for adult dogs. Feed daily alongside fresh water. Store in cool, dry conditions. Contains fish and fish derivatives. NARO Pet Nutrition · naro-pets.com</div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="breakdown-card">
+        <div class="bc-title">Color System — SKU 02</div>
+        <div class="color-swatch-row">
+          <div class="mini-swatch"><div class="ms-color" style="background:#0A6B7A;"></div><div class="ms-info"><div class="ms-name">Primary Teal</div><div class="ms-code">PMS 321 C<br>CMYK 91/11/0/52<br>#0A6B7A</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#064850;"></div><div class="ms-info"><div class="ms-name">Dark Teal</div><div class="ms-code">PMS 3165 C<br>CMYK 92/10/0/69<br>#064850</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#C8E8ED;"></div><div class="ms-info"><div class="ms-name">Teal Mist</div><div class="ms-code">PMS 9381 C<br>CMYK 8/0/0/7<br>#C8E8ED</div></div></div>
+        </div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Typography Specimen</div>
+        <div class="type-specimen-mini">
+          <div class="tsm-font" style="color:var(--teal);">NARO</div>
+          <div class="tsm-meta">Cormorant Garamond · 700 Bold · Display<br>Tracking: -20 · Leading: 0.9</div>
+        </div>
+        <div style="font-family:'Jost',sans-serif; font-size:9pt; font-weight:500; margin-bottom:1.5mm; color:var(--ink);">Wild Atlantic Salmon</div>
+        <div class="tsm-meta">Jost · 500 Medium · Protein Name · 9pt</div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Health Claims</div>
+        <div class="claim-badges">
+          <div class="claim-badge" style="background:var(--teal-light); color:var(--teal-dark);">38% Salmon</div>
+          <div class="claim-badge" style="background:var(--teal-light); color:var(--teal-dark);">Omega 3 &amp; 6</div>
+          <div class="claim-badge" style="background:var(--teal-light); color:var(--teal-dark);">Coat Health</div>
+          <div class="claim-badge" style="background:var(--teal-light); color:var(--teal-dark);">Grain Free</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="tb-title">Production Record — SKU 02</div>
+        <div class="tb-row"><span>Briefing & concept</span><span class="tb-val mono">Day 5</span></div>
+        <div class="tb-row"><span>Illustration & photography</span><span class="tb-val mono">Day 6</span></div>
+        <div class="tb-row"><span>Artwork build (AI)</span><span class="tb-val mono">Day 7</span></div>
+        <div class="tb-row"><span>Proof & amends</span><span class="tb-val mono">Day 8</span></div>
+        <div class="tb-row"><span>Tool</span><span class="tb-val mono">Illustrator CC · ArtPro+</span></div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Format Specifications</div>
+        <div class="spec-row"><span class="sk">Label type</span><span class="sv">Wraparound</span></div>
+        <div class="spec-row"><span class="sk">Total size</span><span class="sv">280 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Front panel</span><span class="sv">95 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Pantone</span><span class="sv">PMS 321 C</span></div>
+        <div class="spec-row"><span class="sk">Finish</span><span class="sv">Soft-touch matte</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 16mm 10mm;">
+    <div class="pf"><div class="pf-ref">NARO Pet Nutrition · Label Design System · SKU 02 Salmon · Section 03</div><div class="pf-brand" style="color:var(--teal);">NARO</div></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 05 SKU 03 LAMB ═══ -->
+<div class="page" style="background:var(--bg);">
+  <div class="sku-page-header-bar" style="background:var(--burg);">
+    <div class="sku-page-header-bar-text">SKU 03 — LAMB · GRASS-FED · SENSITIVE CARE</div>
+    <div class="sku-page-header-bar-text">05 / 06</div>
+  </div>
+  <div class="sku-content">
+    <div class="label-mockup-area">
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm;">Front Panel</div>
+      <div class="label-mockup" style="background:var(--burg);">
+        <div class="label-badge" style="color:var(--burg);">SINGLE<br>PROTEIN</div>
+        <div class="label-top">
+          <div class="label-sku-num">SKU 03 · LAMB</div>
+          <div class="label-brand">NARO</div>
+          <div class="label-deco-line"></div>
+          <div class="label-protein">Grass-Fed Lamb</div>
+          <div class="label-icon-area">🥩</div>
+          <div style="font-size:7.5pt; color:rgba(255,255,255,.65); letter-spacing:.08em;">SENSITIVE ADULT DOG FOOD</div>
+          <div class="label-weight">2 kg · e</div>
+        </div>
+        <div class="label-bottom">
+          <div class="label-bottom-claim">40% Grass-Fed Lamb<br>Grain-Free · Single Protein</div>
+          <div style="text-align:right; font-family:'DM Mono',monospace; font-size:6.5pt; color:rgba(255,255,255,.6);">Batch: LB-2025<br>BBE: See base</div>
+        </div>
+      </div>
+      <div style="font-size:7pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2mm; margin-top:2mm;">Back Panel</div>
+      <div class="label-back">
+        <div class="lb-title">Ingredients & Nutrition</div>
+        <div class="lb-ingredients">
+          <strong>Ingredients:</strong> Dried Lamb (40%), Lamb Fat (7%), Butternut Squash (10%), Peas (8%), Coconut Oil (2%), Flaxseed (3%), Dried Chamomile (0.3%), Chicory Root (Inulin 0.5%), Vitamins &amp; Minerals. <strong>Allergens: None declared.</strong>
+        </div>
+        <table class="lb-nutrition">
+          <tr><th>Analytical Constituents</th><th>Per 100g</th></tr>
+          <tr><td>Crude Protein</td><td>27.0%</td></tr>
+          <tr><td>Crude Fat</td><td>13.0%</td></tr>
+          <tr><td>Crude Fibre</td><td>3.5%</td></tr>
+          <tr><td>Crude Ash</td><td>6.8%</td></tr>
+          <tr><td>Moisture</td><td>9.0%</td></tr>
+          <tr><td>Metabolisable Energy</td><td>348 kcal</td></tr>
+        </table>
+        <div class="lb-legal">Complete pet food for adult dogs with sensitive digestion. Single protein source. No grains, no artificial additives. Store in cool, dry conditions. NARO Pet Nutrition · naro-pets.com</div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="breakdown-card">
+        <div class="bc-title">Color System — SKU 03</div>
+        <div class="color-swatch-row">
+          <div class="mini-swatch"><div class="ms-color" style="background:#7A1A2A;"></div><div class="ms-info"><div class="ms-name">Primary Burgundy</div><div class="ms-code">PMS 7421 C<br>CMYK 0/78/65/52<br>#7A1A2A</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#4A0A14;"></div><div class="ms-info"><div class="ms-name">Dark Burgundy</div><div class="ms-code">PMS 7435 C<br>CMYK 0/86/73/71<br>#4A0A14</div></div></div>
+          <div class="mini-swatch"><div class="ms-color" style="background:#EDD0D5;"></div><div class="ms-info"><div class="ms-name">Blush Rose</div><div class="ms-code">PMS 9360 C<br>CMYK 0/7/3/7<br>#EDD0D5</div></div></div>
+        </div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Typography Specimen</div>
+        <div class="type-specimen-mini">
+          <div class="tsm-font" style="color:var(--burg);">NARO</div>
+          <div class="tsm-meta">Cormorant Garamond · 700 Bold · Display<br>Tracking: -20 · Leading: 0.9</div>
+        </div>
+        <div style="font-family:'Jost',sans-serif; font-size:9pt; font-weight:500; margin-bottom:1.5mm; color:var(--ink);">Grass-Fed Lamb</div>
+        <div class="tsm-meta">Jost · 500 Medium · Protein Name · 9pt</div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Health Claims</div>
+        <div class="claim-badges">
+          <div class="claim-badge" style="background:var(--burg-light); color:var(--burg-dark);">40% Lamb</div>
+          <div class="claim-badge" style="background:var(--burg-light); color:var(--burg-dark);">Single Protein</div>
+          <div class="claim-badge" style="background:var(--burg-light); color:var(--burg-dark);">Grain Free</div>
+          <div class="claim-badge" style="background:var(--burg-light); color:var(--burg-dark);">Sensitive Care</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="tb-title">Production Record — SKU 03</div>
+        <div class="tb-row"><span>Briefing & concept</span><span class="tb-val mono">Day 9</span></div>
+        <div class="tb-row"><span>Illustration & photography</span><span class="tb-val mono">Day 10</span></div>
+        <div class="tb-row"><span>Artwork build (AI)</span><span class="tb-val mono">Day 11</span></div>
+        <div class="tb-row"><span>Proof & amends</span><span class="tb-val mono">Day 12</span></div>
+        <div class="tb-row"><span>Tool</span><span class="tb-val mono">Illustrator CC · ArtPro+</span></div>
+      </div>
+      <div class="breakdown-card">
+        <div class="bc-title">Format Specifications</div>
+        <div class="spec-row"><span class="sk">Label type</span><span class="sv">Wraparound</span></div>
+        <div class="spec-row"><span class="sk">Total size</span><span class="sv">280 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Front panel</span><span class="sv">95 × 120mm</span></div>
+        <div class="spec-row"><span class="sk">Pantone</span><span class="sv">PMS 7421 C</span></div>
+        <div class="spec-row"><span class="sk">Finish</span><span class="sv">Soft-touch matte</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 16mm 10mm;">
+    <div class="pf"><div class="pf-ref">NARO Pet Nutrition · Label Design System · SKU 03 Lamb · Section 04</div><div class="pf-brand" style="color:var(--burg);">NARO</div></div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 06 PRINT SPECS + DIELINE ═══ -->
+<div class="page int">
+  <div class="ph">
+    <div class="ph-l"><div class="pm" style="background:var(--ink);">05</div><div class="pt">Print Specifications & Dieline Reference</div></div>
+    <div class="pn">06 / 06</div>
+  </div>
+  <div class="stitle">Technical Specifications</div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-title">Wraparound Label — All SKUs</div>
+      <div class="spec-row"><span class="sk">Total label size</span><span class="sv">280 × 120mm</span></div>
+      <div class="spec-row"><span class="sk">Front panel</span><span class="sv">95 × 120mm</span></div>
+      <div class="spec-row"><span class="sk">Back panel</span><span class="sv">130 × 120mm</span></div>
+      <div class="spec-row"><span class="sk">Spine overlap</span><span class="sv">55mm (front/back bridge)</span></div>
+      <div class="spec-row"><span class="sk">Bleed</span><span class="sv">3mm all sides</span></div>
+      <div class="spec-row"><span class="sk">Safe zone</span><span class="sv">5mm inside trim</span></div>
+      <div class="spec-row"><span class="sk">Corner radius</span><span class="sv">None — butt cut</span></div>
+      <div class="spec-row"><span class="sk">PDF export</span><span class="sv">PDF/X-1a · ISO Coated v2</span></div>
+      <div class="spec-row"><span class="sk">Max ink density</span><span class="sv">300% TAC</span></div>
+      <div class="spec-row"><span class="sk">Resolution</span><span class="sv">300 dpi minimum</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Substrate & Finishing</div>
+      <div class="spec-row"><span class="sk">Substrate</span><span class="sv">Uncoated white 90gsm</span></div>
+      <div class="spec-row"><span class="sk">Print process</span><span class="sv">Offset litho, 5-color</span></div>
+      <div class="spec-row"><span class="sk">High-volume alternative</span><span class="sv">Flexographic · 50,000+ unit runs</span></div>
+      <div class="spec-row"><span class="sk">Color mode</span><span class="sv">CMYK + 1 Pantone per SKU</span></div>
+      <div class="spec-row"><span class="sk">Laminate</span><span class="sv">Soft-touch matte, full cover</span></div>
+      <div class="spec-row"><span class="sk">Spot UV</span><span class="sv">NARO wordmark (front panel)</span></div>
+      <div class="spec-row"><span class="sk">Emboss</span><span class="sv">None</span></div>
+      <div class="spec-row"><span class="sk">Application</span><span class="sv">Machine-applied wraparound</span></div>
+      <div class="spec-row"><span class="sk">Adhesive</span><span class="sv">Permanent acrylic, cold temp</span></div>
+      <div class="spec-row"><span class="sk">Container type</span><span class="sv">Stand-up pouch / rigid box</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Pantone Reference — All SKUs</div>
+      <div style="display:flex; align-items:center; gap:3mm; padding:2.5mm 0; border-bottom:.5px solid #EEEBE0;">
+        <div style="width:6mm; height:6mm; border-radius:50%; background:#C4780A; border:.5px solid rgba(0,0,0,.1); flex-shrink:0;"></div>
+        <div><div style="font-size:7.5pt; font-weight:500;">SKU 01 Chicken</div><div class="mono" style="font-size:6.5pt; color:var(--muted);">Pantone 7560 C · CMYK 0/42/93/13</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:3mm; padding:2.5mm 0; border-bottom:.5px solid #EEEBE0;">
+        <div style="width:6mm; height:6mm; border-radius:50%; background:#0A6B7A; border:.5px solid rgba(0,0,0,.1); flex-shrink:0;"></div>
+        <div><div style="font-size:7.5pt; font-weight:500;">SKU 02 Salmon</div><div class="mono" style="font-size:6.5pt; color:var(--muted);">Pantone 321 C · CMYK 91/11/0/52</div></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:3mm; padding:2.5mm 0;">
+        <div style="width:6mm; height:6mm; border-radius:50%; background:#7A1A2A; border:.5px solid rgba(0,0,0,.1); flex-shrink:0;"></div>
+        <div><div style="font-size:7.5pt; font-weight:500;">SKU 03 Lamb</div><div class="mono" style="font-size:6.5pt; color:var(--muted);">Pantone 7421 C · CMYK 0/78/65/52</div></div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">Barcode & Regulatory</div>
+      <div class="spec-row"><span class="sk">Barcode type</span><span class="sv">EAN-13</span></div>
+      <div class="spec-row"><span class="sk">Min barcode size</span><span class="sv">SC2 (80% magnification)</span></div>
+      <div class="spec-row"><span class="sk">Barcode placement</span><span class="sv">Back panel, bottom-right</span></div>
+      <div class="spec-row"><span class="sk">Regulatory standard</span><span class="sv">EU Pet Food Reg. 767/2009</span></div>
+      <div class="spec-row"><span class="sk">Mandatory text</span><span class="sv">"Complete pet food for adult dogs"</span></div>
+      <div class="spec-row"><span class="sk">Allergen format</span><span class="sv">Bold in ingredients list</span></div>
+      <div class="spec-row"><span class="sk">Min text size</span><span class="sv">6pt (regulatory) · 7pt (body)</span></div>
+      <div class="spec-row"><span class="sk">Weight declaration</span><span class="sv">e-mark + net weight mandatory</span></div>
+    </div>
+  </div>
+
+  <!-- Dieline reference -->
+  <div class="dieline-ref">
+    <div class="dieline-label-shape">
+      <div class="dl-bleed"></div>
+      <div class="dl-safe"></div>
+      <div class="dl-inner-text">NARO</div>
+      <div style="font-family:'DM Mono',monospace; font-size:6pt; color:rgba(255,255,255,.25); text-align:center; line-height:1.6;">FRONT PANEL<br>95mm</div>
+      <div class="dl-dim-h">←— 95mm —→</div>
+      <div class="dl-dim-v">↕ 120mm</div>
+    </div>
+    <div class="dl-legend">
+      <div class="dl-leg-item"><div class="dl-leg-dot" style="background:rgba(255,100,100,.5);"></div>3mm bleed</div>
+      <div class="dl-leg-item"><div class="dl-leg-dot" style="background:rgba(100,255,100,.35);"></div>5mm safe zone</div>
+      <div class="dl-leg-item"><div class="dl-leg-dot" style="background:rgba(255,255,255,.4);"></div>Trim line</div>
+    </div>
+  </div>
+
+  <div class="signoff-bar" style="margin-top:5mm;">
+    <div>
+      <div class="sb-brand">NARO</div>
+      <div class="sb-sub">Pet Nutrition · Label Design System v1.0 · 3 SKU Variants · 2025</div>
+    </div>
+    <div class="sb-r">Adobe Illustrator CC · Photoshop CC<br>Pantone Connect · Esko ArtPro+<br>06 / 06 · CLIENT REVIEW DRAFT</div>
+  </div>
+  <div class="pf" style="margin-top:4mm;"><div class="pf-ref">NARO Pet Nutrition · Label Design System · Print Specifications · Section 05</div><div class="pf-brand">NARO</div></div>
+</div>
+
+</body>
+</html>
